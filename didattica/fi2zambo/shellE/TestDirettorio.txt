@@ -1,0 +1,17 @@
+PATH=$PATH:/home/deis33/franco/CALCOLATORI
+
+cd $1  # non controllaiamo che l'arg sia effettivamente un sottodirettorio
+
+for i in *
+do
+  if [ -d $i ]
+    then ese7 $i $2
+  fi
+# in questo ciclo va a testare tutti i file del direttorio
+# e si invoca recursivamente per tutti i sottodirettori
+done
+
+if [ -f $2 ]
+then echo in `pwd`:$2
+fi
+

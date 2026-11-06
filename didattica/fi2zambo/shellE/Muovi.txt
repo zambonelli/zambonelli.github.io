@@ -1,0 +1,26 @@
+
+# il comando nuove su richiesta i file passati come 
+# argomento nel direttorio passato come primo argomento
+
+case $# in
+ o|1) echo due argomenti; exit;;
+esac
+
+diret=$1
+shift
+
+echo $diret $1
+
+  for i in $*
+  do
+      echo $i in $diret ?
+      read risposta
+      if test $risposta = "si" -o $risposta = "s"
+	then
+	  if mv $i $diret
+	    # il risultato della move comanda la alternativa
+	    then echo si $1/$diret
+	    else echo problemi per $diret
+          fi
+      fi
+  done

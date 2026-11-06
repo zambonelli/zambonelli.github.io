@@ -1,0 +1,56 @@
+
+Filtro 4
+
+
+Si progetti, utilizzando il linguaggio C e le primitive di basso livello 
+che operano sui file, un filtro filtro. Il programma deve prevedere due 
+parametri: il primo deve essere considerato il nome relativo di un file (F), 
+mentre il secondo deve essere considerato un numero intero positivo (N).  
+Il filtro filtro deve operare una selezione dei caratteri del file F in 
+modo da suddividere il contenuto di F, a multipli di N caratteri, in un 
+certo numero di file di nome F.X. Se, ad esempio, il file F è lungo 2.4 N, 
+allora, i primi N caratteri del file F devono essere scritti su un file, 
+appositamente creato, di nome F.1; i secondi N caratteri del file F devono 
+essere scritti su un file, appositamente creato, di nome F.2; ed infine, 
+gli ultimi caratteri del file F devono essere scritti su un file, 
+appositamente creato, di nome F.3. Si riporti come valore di uscita del 
+filtro il numero di file F.X creati.
+
+
+
+Soluzione
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#define PERM 0644
+
+main(int argc, char **argv)
+{
+int N, nr, fd, fd1, i = 0;
+char *s, nome[80], nro[10];
+
+if (argc < 3) { puts("Errore nel numero di parametri"); exit(-1); }
+
+if ((fd = open(argv[1], O_RDONLY)) < 0)
+               { puts("Errore in apertura"); exit(-2); }
+
+N = atoi(argv[2]);
+s = (char *) malloc(N);
+
+while ((nr = read(fd, s, N)))
+        { strcpy(nome, argv[1]);
+          strcat(nome, ".");
+          i++;
+          sprintf(nro, "%d", i);
+          strcat(nome, nro);
+          fd1 = creat(nome, PERM);
+          write(fd1, s, nr);
+        }
+}
+
+

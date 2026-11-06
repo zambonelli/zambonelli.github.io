@@ -1,0 +1,15 @@
+ESAME DI FONDAMENTI DI INFORMATICA C - CdL Ing. El. & Inf. A-C - 28 Marzo 2001
+
+Si realizzi un programma per la gestione e la ricerca di dati relativi agli abbonati telefonici. Si consideri un abbonato telefonico in termini di: Cognome, Numero di Telefono, Minuti di Conversazione Effettuati. Esempio: Zambonelli, 051444444, 328 Minuti. 
+
+Si organizzino i dati sfruttando le strutture dati ritenute più opportune a facilitare la gestione e la ricerca di dati.
+
+Il programma deve presentare all'utente le seguenti scelte:
+· inserimento di dati relativi a un nuovo abbonato (punti 6);
+· visualizzazione ordinata dei dati di tutti gli abbonati (punti 6);
+· ricerca di un abbonato con uno specifico numero telefonico (punti 6);
+· cancellazione di un abbonato (punti 6);
+· calcolo dei minuti totali di traffico come somma dei minuti di traffico di tutti gli abbonati (punti 6).
+
+Si strutturi il programma suddividendolo nei modi ritenuti più soddisfacenti e si sfruttino a piacere le librerie di cui si ha la disponibilità.
+

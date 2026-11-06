@@ -1,0 +1,31 @@
+ESAME DI FONDAMENTI DI INFORMATICA C - CdL Ing. El. & Inf. A-C - 19 Aprile 2001
+
+Si realizzi un programma per la gestione di gruppi che accedono 
+alla sala di un museo e la visitano. La sala ha una capienza 
+massima di 30 persone. I gruppi sono identificati da un nome 
+(p.e., "studenti ingegneria" o "4A liceo Fermi"), 
+e possono essere composti da un numero di persone comprese 
+tra 1 e 10. Si intende che le persone di un gruppo devono 
+entrare nella sala tutte insieme oppure restare fuori tutte. 
+Nell'ingresso alla sala e nell'uscita dalla sala si devono 
+inoltre rispettare gli ordini di arrivo dei gruppi. 
+
+Si organizzino i dati sfruttando le strutture dati ritenute 
+più opportune a facilitarne la gestione.
+
+Il programma deve presentare all'utente le seguenti scelte:
+- inserimento di dati relativi a un nuovo gruppo che vuole entrare 
+  nella sala (punti 5);
+- visualizzazione ordinata secondo ordine di arrivo dei gruppi in 
+  attesa di entrare nella sala (punti 5);
+- uscita di un gruppo dalla sala e conseguente entrata di uno o più gruppi in attesa, in modo tale che si mantengano i vincoli di capienza della sala e in modo tale da massimizzare l'uso della sala (punti 8); 
+- visualizzazione ordinata per nome dei gruppi in attesa di entrare nella sala (punti 6);
+- conteggio del numero totale di persone e di gruppi in attesa di entrare nella sala (punti 6);
+
+Si strutturi il programma suddividendolo nei modi ritenuti più 
+soddisfacenti e si sfruttino a piacere le librerie di cui si ha 
+la disponibilità.
+
+(Suggerimento: si usino due strutture dati di tipo coda, una per i 
+gruppi in attesa e una per i gruppi attualmente nella sala).
+

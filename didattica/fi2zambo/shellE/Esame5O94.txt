@@ -1,0 +1,135 @@
+
+Fondamenti di Informatica - Esame Scritto del 5 Ottobre 1994
+
+Si  progetti,  utilizzando  il  linguaggio C e  le  primitive  di basso 
+livello che operano sui  file, un filtro filtro che prevede tre argomenti 
+di  invocazione.  Il primo parametro deve essere considerato come 
+un numero intero (N), mentre gli altri due rappresentano due nomi di 
+file (f1 e f2).   Il filtro deve  riportare sullo standard output  una 
+"fusione" del contenuto dei due file f1 e f2.  Piu' precisamente si 
+deve riportare in uscita N caratteri del file f1, poi  N caratteri del file 
+f2 e cosi' via.
+
+Inoltre, utilizzando il Bourne Shell di  UNIX, si  progetti  un  
+algoritmo che preveda  tre parametri: il primo parametro sia il nome 
+assoluto di un direttorio, il secondo parametro sia il nome assoluto 
+di un file, mentre il terzo sia una stringa.  Il primo parametro 
+determina una gerarchia del  file  system  che ha origine da tale 
+direttorio. In tale gerarchia, si cerchino tutti i file il cui nome 
+contiene la stringa passata come terzo parametro (in una qualunque 
+posizione).  Per ognuno dei file trovati, si deve scriverne il nome 
+assoluto sullo standard output e si deve richiedere interattivamente 
+all'utente un numero intero N.  Quindi  si applichi  il  filtro filtro di 
+cui sopra, passandogli come  parametri : 1) il valore di N, 2) il nome 
+del file trovato, 3) il secondo parametro del file comandi.
+
+
+#compito dir fileass stringa
+
+case $# in
+0 | 1 | 2) echo Errore: Uso $0 dir file stringa
+           exit 1;;
+*) case $1 in
+     /*) if test ! -d $1
+          then echo Direttorio $1 inesistente
+          exit 2
+          fi;;
+     *) echo $1 non assoluto
+         exit 3;;
+     esac
+     case $2 in
+     /*) if test ! -f $2
+          then echo File $2 inesistente
+          exit 4
+          fi;;
+     *) echo $2 non assoluto
+         exit 3;;
+     esac
+esac
+
+PATH=$PATH:$HOME
+export PATH
+
+cd $1
+scan $2 $3
+
+#scan fileass stringa
+
+for i in *$2*
+do
+	if test -f $i
+	then    if test -r $i
+		then 	echo file `pwd`/$i
+			echo Inserisci numero
+			read N
+			expr $N + 0 >/dev/null 2>dev/null
+			if test $? -ne 0
+				then echo errore argomento numerico $N
+				exit
+			fi
+			filtro $N $i $1
+		else
+			echo file `pwd`/$i non accessibile in lettura
+		fi
+	fi
+done
+
+for i in *
+do
+	if test -d $i -a -x $i
+	then    cd $i
+		scan $*
+		cd ..
+	fi
+done
+
+
+/* questo è il filtro */
+
+
+#include <stdio.h>
+#include <fcntl.h>
+
+main (argc, argv)
+int argc;
+char **argv;
+{  	int fd1, fd2, N, nread1, nread2;
+	char *buff1, *buff2;
+
+if (argc  != 4) { puts("Errore nel numero di parametri"); exit(-1);}
+
+N = atoi(argv[1]);
+
+if ((fd1 = open(argv[2], O_RDONLY)) < 0)
+		{ puts("Errore nell'apertura primo file"); exit(-2);}
+
+if ((fd2 = open(argv[3], O_RDONLY)) < 0)
+		{ puts("Errore nell'apertura secondo file"); exit(-2);}
+
+buff1 = (char *) malloc(N);
+buff2 = (char *) malloc(N);
+
+
+
+while (((nread1 = read(fd1, buff1, N)) > 0) &&
+       ((nread2 = read(fd2, buff2, N)) > 0) )
+       { write (1, buff1, nread1);
+	 write (1, buff2, nread2);
+       }
+
+if (nread1 > 0) 
+       write (1, buff1, nread1);
+
+while ((nread1 = read(fd1, buff1, N)) > 0)
+       write (1, buff1, nread1);
+
+while ((nread2 = read(fd2, buff2, N)) > 0)
+	 write (1, buff2, nread2);
+
+close(fd1); close(fd2);
+free(buff1); free(buff2);
+}
+
+5ott94 - 5
+
+

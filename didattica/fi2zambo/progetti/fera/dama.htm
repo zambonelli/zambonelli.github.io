@@ -1,0 +1,164 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>DAMA</title>
+</head>
+
+<body background="1k.jpg" bgcolor="#FFFFFF" link="#C0C0C0">
+
+<p align="center"><font color="#00FF00" size="7"
+face="Comic Sans MS">DAMA</font></p>
+
+<p><font color="#00FFFF" size="4"><strong>Questa é un'applet che
+cerca di imitare il gioco della dama, le regole sono identiche al
+gioco della dama, é previsto solo per due giocatori, non si puó
+infatti giocare contro il computer.</strong></font></p>
+
+<p><font color="#00FFFF" size="4"><strong>Per la costruzione di
+questa emulazione sono state create, da opportuni file sorgente
+in Java, le classi che permettono il funzionamento dell'applet in
+modo corretto</strong></font></p>
+
+<p><font color="#00FFFF" size="4"><strong>I files sorgenti in
+Java, DamaApplet, MyDialog, Caselle e Movimento, permettono ai
+giocatori (players) di emulare in tutto e per tutto il vero gioco
+da tavolo, infatti é possibile anche barare, cioé é permesso
+allo stesso giocatore di muovere due volte di seguito la propria
+pedina, questo é possibile in quanto vi é la possibilitá da
+parte di un giocatore di mangiare piú pedine per volta.</strong></font></p>
+
+<p><font color="#00FFFF" size="4"><strong>Le pedine, che vengono
+importate dall'esterno come immagini, sono sei, anche se ne
+sarebbere bastate solo quattro, due pedine e due dame, ne sono
+state aggiunte altre due, dette temporali, che compaiono sullo
+schermo quando si muove una pedina o una dama.</strong></font></p>
+
+<p align="center"><font color="#00FFFF" size="4"><strong></strong></font>&nbsp;</p>
+
+<p align="center"><font color="#00FFFF" size="4"><strong></strong></font>&nbsp;</p>
+
+<p align="center"><font color="#00FF40" size="4" face="Verdana"><em><strong>Descrizione
+dei files sorgenti JAVA</strong></em></font></p>
+
+<p><font color="#00FFFF" size="4" face="Times New Roman Baltic">I
+files sono:</font></p>
+
+<ul>
+    <li><a href="http://www.agentgroup.unimore.it/Zambonelli/didattica/fi2zambo/progetti/fera/MyDialog.htm"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">MyDialog.java</font></a></li>
+    <li><a href="http://www.agentgroup.unimore.it/Zambonelli/didattica/fi2zambo/progetti/fera/caselle.htm"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">caselle.java</font></a></li>
+    <li><a href="http://www.agentgroup.unimore.it/Zambonelli/didattica/fi2zambo/progetti/fera/movimento.htm"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">Movimento.java</font></a></li>
+    <li><a href="http://www.agentgroup.unimore.it/Zambonelli/didattica/fi2zambo/progetti/fera/damaapplet.htm"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">DamaApplet.java</font></a></li>
+</ul>
+
+<p><font color="#00FFFF" size="4" face="Times New Roman Baltic"><em>MyDialog.java</em>,
+costituisce una classe che si occupa in pratica della finestra di
+dialogo e del suo posizionamento.</font></p>
+
+<p><font color="#00FFFF" size="4" face="Times New Roman Baltic"><em>Caselle.java</em>,
+costituice una classe che praticamente di occupa della
+definizione vera e propria delle caselle, della loro colorazione,
+del loro stato e del posizionamento delle pedine su di esse;
+vengono definiti per il raggiungimento di tale scopo oltre alle
+classi definite dal jdk alcuni metodi, public e private, seguono
+i piú interessanti, a mio parere;</font></p>
+
+<ul>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">public void
+        PedinaDontgoAway, metodo che gestisce l'annulamento di
+        una mossa</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">public void PedinaGoOut,
+        metodo che gestisce lo stato di una casella da &quot;con
+        pedina&quot; a &quot;senza pedina&quot;</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">public void PedinaGoin,
+        invece si occupa dello stato della casella da senza a con</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">public void MouseClicked,
+        metodo che gestisce i click del mouse sulle caselle nei
+        diversi casi</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">public int WhatXorY, metodo
+        per rilevare le coordinate x e y (sulla scachiera)</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">pubblic boolean
+        IsAtBoundYesNo, metodo che verifica se la casella é a
+        destra o sinistra (importante per stabilire le dame)</font></p>
+    </li>
+</ul>
+
+<p><font color="#00FFFF" size="4" face="Times New Roman Baltic"><em>Movimento.java</em>,
+costituisce una classe che in pratica stabilisce le regole del
+gioco, stabilendo con opportuni metodi la validitá o meno di una
+mossa, di una mangiata, per tramutare in dama una pedina e
+ovviamente realizzando il movimento vero e proprio;</font></p>
+
+<ul>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">public void CheckMove,
+        metodo per il controllo della validitá di una mossa,
+        meglio specificato col metodo private boolean
+        IsmoveOkYesorNo</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">private boolean
+        EatsomethingYesorNo, metodo per effettuare una mangiata</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">private void MakeDama,
+        metodo che permette di tramutare la pedina in dama</font></p>
+    </li>
+    <li><p align="left"><font color="#00FFFF" size="4"
+        face="Times New Roman Baltic">private void MakeMove,
+        metodo per realizzare in pratica il movimento, ottenuto
+        cambiando gli attributi</font></p>
+    </li>
+</ul>
+
+<p align="left"><font color="#00FFFF" size="4"
+face="Times New Roman Baltic"><em>DamaApplet.java</em>,
+costituisce l'applet, crea attraverso il JBuilder, sei differenti
+classi, tanti quanto le immagini importate. Qui viene ovviamente
+costruita l'applet e viene inizializzata, vengono importate le
+immagini, si definisce il layout dell'applet, viene cotruito il
+menú e il layout della finestra, e chiaramente viene definita la
+scacchiera.</font></p>
+
+<p align="left"><font color="#00FFFF" size="4"
+face="Times New Roman Baltic"></font>&nbsp;</p>
+
+<p align="left"><font color="#FFFF80" size="4"
+face="Times New Roman Baltic">É possibile inoltre consultare le
+pagine generate tramite </font><a href="index.html"><font
+color="#FFFF80" size="4" face="Times New Roman Baltic">Javadoc</font></a></p>
+
+<p align="center">&nbsp;</p>
+
+<p><font color="#00FFFF" size="4" face="Times New Roman Baltic"></font>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+
+<h2> Fai partire il gioco!</h2>
+<br>
+<br>
+<applet code="DamaApplet.class" height=50 width=50>
+</applet>
+
+
+
+</body>
+</html>

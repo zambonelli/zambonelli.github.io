@@ -1,0 +1,173 @@
+# esempio 13  - versione 1 
+
+# conta il numero totale di file in una gerarchia 
+# specificata dal nome assoluto di un direttorio dato come primo 
+# parametro
+#versione che fa uso di un file in cui si memorizzano i nomi di tutti
+# i file trovati
+
+case $# in
+0)    echo errore ci vuole un parametro; exit 1;;
+1)      if test ! -d $1
+        then echo primo argomento deve essere direttorio; exit 2
+        else
+                case $1 in
+                /*) ;;
+                *) nome di direttorio non assoluto; exit 3;;
+                esac
+        fi
+        ;;
+esac
+
+PATH=$HOME/CALCOLATORI:$PATH
+
+>/tmp/tmpshell
+#creazione di un file temporaneo
+cd $1
+conta
+#invocazione del file comandi ricorsivo
+TOTALE=`cat /tmp/tmpshell | wc -l`
+# il numero di linee del file determina il numero di file trovati
+
+echo trovati $TOTALE file in totale
+rm /tmp/tmpshell
+
+
+
+===================================================
+# questo è il file conta dell'esempio 13 versione 1
+
+
+for i in *
+do
+		if test -f $i
+		then
+			echo `pwd`/$i >> /tmp/tmpshell
+		fi
+		
+		if test -d $i
+		then
+			cd $i
+			conta
+			cd ..
+		fi
+done
+
+========================================================================
+# esempio 13  - versione 2 
+# conta il numero totale di file in una gerarchia 
+# specificata dal nome assoluto di un direttorio dato come primo 
+# parametro
+#versione che fa uso di un file in cui si memorizzano i nomi di tutti
+# i file trovati
+# rispetto alla versione 2 c'e' un modo diverso di esplorare il file system
+
+
+
+# il controllo dei parametri e' lo stesso
+
+
+PATH=$HOME/CALCOLATORI:$PATH
+
+>/tmp/tmpshell
+#creazione di un file temporaneo
+# NOTA: non vado dentro al direttorio
+#ma lascio che conta stesso ci vada dentro e quindi
+# ovviamente gli devo passare il nome del direttorio
+conta $1
+#invocazione del file comandi ricorsivo
+TOTALE=`cat /tmp/tmpshell | wc -l`
+# il numero di linee del file determina il numero di file trovati
+
+echo trovati $TOTALE file in totale
+rm /tmp/tmpshell
+
+
+===================================================
+# questo è il file conta dell'esempio 13 versione 2
+
+cd $1
+# deve andare dentro al direttorio
+
+for i in *
+do
+		if test -f $i
+		then
+			echo `pwd`/$i >> /tmp/tmpshell
+		fi
+		
+		if test -d $i
+		then
+			conta $i
+# NOTA: non bisogna fare il cd .. 
+		fi
+done
+
+
+
+=============================================================
+# esempio 13  - versione 3 
+# conta il numero totale di file in una gerarchia 
+# specificata dal nome assoluto di un direttorio dato come primo 
+# parametro
+#versione che fa uso di un file in cui si memorizza il valore di una 
+# variabile che rappresenta un numero intero indicante il numero
+# di file trovati 
+
+
+
+
+# il controllo degli argomenti e' lo stesso di prima
+
+PATH=$HOME/CALCOLATORI:$PATH
+
+echo 0 > /tmp/tmpshell
+# creo un file temporaneo e ci metto dentro la stringa
+# rappresentate il numero zero
+
+cd $1
+conta
+#invocazione del file comandi ricorsivo
+
+TOTALE=`cat /tmp/tmpshell `
+# la stringa contenuta nel file rappresenta il numero 
+# di file trovati in totale
+
+echo trovati $TOTALE file in totale
+rm /tmp/tmpshell
+
+
+
+=====================================================
+# questo è il file conta dell'esempio 13 versione 3
+
+TOTALE=`cat /tmp/tmpshell`
+# recupero il numero totale di file fino a quel momento
+# NOTA: la variabile TOTALE e' una variabile LOCALE
+# dello shell, e non e' condivisa da altri shell
+
+# adesso vado prima a contare quanti file ci sono nel direttorio
+# corrente, incrementando di volta in volta la variabile TOTALE e
+# quindi rimetto il valore aggiornato della variabile TOTALE nel file
+
+for i in *
+do
+		if test -f $i
+		then
+			TOTALE=`expr $TOTALE + 1`
+		fi
+done
+
+echo $TOTALE > /tmp/tmpshell
+
+# adesso vado a esplorare i sottodirettori
+for i in *
+do
+		if test -d $i
+		then
+			cd $i
+			conta
+			cd ..
+		fi
+done
+===============================================================

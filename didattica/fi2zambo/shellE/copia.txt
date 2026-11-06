@@ -1,0 +1,30 @@
+# esempio 2 il file sorgente viene copiato sul file destinazione
+# se questo esiste gia' si chiede permesso di sovrascriverlo
+
+#copia filesorg filedest
+
+case $# in
+0|1) 	echo Uso $0 filesorg filedest
+	exit;;
+2)	if test ! -f $1
+       	then echo $1 non esiste
+	exit
+       	fi ;;
+esac
+if test -f $2 
+then 
+	echo il file $2 esiste: vuoi ricoprirlo?
+   	read answer
+   	case $answer in
+     	  	  n*|N*) exit;;
+   	esac
+fi
+if test -d $2
+then 	echo $2 "e` un direttorio";exit
+else
+  	if cp $1 $2
+  	then echo copiato file $1 in $2
+  	else echo errore sulla copia
+ 	 fi
+fi
+

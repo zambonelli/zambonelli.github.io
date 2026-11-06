@@ -1,0 +1,36 @@
+ESAME DI FONDAMENTI DI INFORMATICA C - CdL Ing. El. & Inf. A-C - 
+19 Aprile 2001
+
+Si realizzi un programma per la gestione dell'accesso ad un vecchio 
+ponte e del suo attraversamento da parte di autovetture. Il ponte 
+ha una ha portata massima di 200 quintali. La macchine sono 
+identificate da una marca (p.e., "Fiat" o "Opel"), e possono 
+avere un peso compreso tra 10 e 50 quintali. Nell'accesso e 
+nell'attraversamento del ponte le macchine non si possono sorpassare. 
+
+Si organizzino i dati sfruttando le strutture dati ritenute più 
+opportune a facilitarne la gestione.
+
+Il programma deve presentare all'utente le seguenti scelte:
+- inserimento di dati relativi a una nuova macchina che vuole 
+  attraversare il ponte (punti 5);
+- visualizzazione ordinata secondo ordine di arrivo delle macchine 
+  in attesa di attraversare il ponte (punti 5);
+- uscita di una macchina dal ponte e conseguente entrata di uno o più
+   macchine in attesa, in modo tale che si mantengano i vincoli di 
+  portata del ponte e in modo tale da massimizzare l'uso del ponte 
+  stesso (punti 8); 
+- visualizzazione ordinata per peso della macchine in attesa di entrare 
+  sul ponte (punti 6);
+- conteggio del numero totale di macchine attualmente sul ponte e del 
+  loro peso totale (punti 6);
+
+
+Si strutturi il programma suddividendolo nei modi ritenuti più 
+soddisfacenti e si sfruttino a piacere le librerie di cui si ha la 
+disponibilità.
+
+(Suggerimento: si usino due strutture dati di tipo coda, una per le 
+macchine in attesa e una per la macchine attualmente sul ponte).
+
+

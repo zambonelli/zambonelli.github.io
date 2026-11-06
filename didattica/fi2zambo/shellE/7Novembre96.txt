@@ -1,0 +1,101 @@
+Fondamenti di Informatica - Esame Scritto del 7 Novembre 1996
+
+Esercizio N. 1
+
+Si progetti utilizzando il linguaggio C e le primitive di basso livello che operano sui 
+file un filtro filtro, che prevede due argomenti di invocazione che devono essere 
+considerati numeri interi positivi (N1 e N2). Il filtro deve, facendo uso delle funzioni 
+primitive di accesso ai file, riportare sullo standard output una selezione dei caratteri 
+dello standard input: in uscita devono essere riportati solo i caratteri il cui codice ascii 
+è compreso tra N1 ed N2.
+
+Inoltre, utilizzando il Bourne Shell di Unix, si progetti un algoritmo che preveda due 
+parametri: il primo parametro deve essere il nome di un direttorio assoluto; il secondo 
+parametro deve essere considerato un numero intero positivo (N1). Il programma deve 
+dapprima richiedere all’utente un numero intero positivo (N2) che deve essere 
+maggiore di N1. Quindi deve verificare nella gerarchia identificata dal primo 
+parametro (dal livello di partenza in poi) se i file leggibili hanno una dimensione 
+minore di N1, maggiore di N2, oppure compresa tra N1 ed N2. Per ogni file leggibile 
+che verifica la condizione di avere la dimensione compresa tra N1 ed N2, si deve 
+applicare il filtro filtro usando il file come standard input e passandogli come 
+parametri i due numeri N1 ed N2.
+
+Soluzione
+
+FILTRO
+#include <stdio.h>
+#include <stdlib.h>
+
+main (int argc, char **argv)
+{
+int N1, N2;
+int nread;
+char buf;
+
+N1=atoi(argv[1]);
+N2=atoi(argv[2]);
+
+while((nread=read(0,&buf,1))>0)
+	if(((int)buf>=N1) && ((int)buf<=N2))
+		write(1, &buf, 1);
+
+
+SHELL
+
+#71196 dirass N1
+
+
+case $# in
+
+0|1) 	echo errore argomenti; exit 1;;
+
+2)  if test -d $1 -a -x $1
+then cd $1
+else 	echo errore direttorio assoluto
+	exit
+fi 
+;;
+
+PATH=$PATH:direttoriodovestailfle
+export PATH
+
+echo immetti numero intero positivo
+read N2
+while test $N2 -le $2
+do
+	echo errore sul numero reinserisci
+	read N2
+done
+
+esplora $N1 $N2
+
+
+#esplora
+
+for i in *
+do
+	if test -d $i -a -x $i
+	then
+		cd $i
+		esplora $*
+		cd ..
+	fi
+	if test -f $i -a -r $i
+	then
+		dim=’wc -c $i’
+		if test $dim -lt $1
+	 	then 
+			echo dimensione minore di N1
+		fi
+		if test $dim -gt $2
+		then 
+			echo dimensione maggiore di N2
+		fi
+		if test $dim -ge $1 -a $dim -le $2
+		then
+			echo dimensione compresa tra N1 e N2
+			filtro $1 $2 < $i
+		fi
+	fi
+done
+	

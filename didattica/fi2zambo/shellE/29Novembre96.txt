@@ -1,0 +1,151 @@
+Fondamenti di Informatica - Esame Scritto del 29 Novembre 1996
+
+Si progetti, utilizzando il linguaggio C e le primitive di basso livello che operano sui 
+file, un filtro filtro che prevede n argomenti di invocazione  (con n >= 1) che devono 
+essere considerati nomi di file (F1 ... Fn).  Il filtro filtro deve, facendo uso delle 
+funzioni primitive di accesso ai file, riportare sullo standard output per ogni file Fi 
+passato: a) il nome di tale file; b) un numero di linee del file Fi pari alla sua 
+posizione relativa all'interno della lista passata: cioé, per il primo file (F1) si deve 
+scrivere la prima linea, per il secondo file (F2), le prime due linee, per l'n-esimo file 
+(Fn), le prime n linee.
+
+Inoltre, utilizzando il Bourne Shell di UNIX, si progetti un algoritmo che preveda 
+tre parametri: il primo parametro deve essere il nome assoluto di un direttorio che 
+identifica una gerarchia all'interno del file system; il secondo parametro sia il nome 
+relativo di un direttorio; il terzo parametro deve essere il nome relativo di un file 
+(F).  Il programma deve cercare nella gerarchia specificata tutte le gerarchie Gi 
+identificate dal nome relativo dato come secondo parametro: si riporti il nome 
+assoluto di tali gerarchie sullo standard output.  In ognuna delle gerarchie trovate Gi, 
+si devono cercare tutti i file leggibili il cui nome sia F (terzo parametro). Al termine 
+della esplorazione di ogni gerarchia  Gi, si deve richiedere interattivamente all'utente 
+il nome di un file (F1) e quindi si deve applicare la funzione filtro che accetta un 
+insieme variabile di parametri che devono essere i nomi dei file F trovati.  L'output di 
+questo filtro va ridiretto in uscita sul file F1 (senza distruggerne il contenuto 
+precedente). 
+
+
+#29nov96.sh dirassoluto dirrelativo nomefile
+
+
+case $# in
+3)	;;
+*) 	echo Errore: Usage is $0 dirassoluto dirrelativo nomefile
+	exit;;
+esac
+
+case $1 in
+/*)	;;
+*) 	echo Errore: $1 non dirassoluto 
+	exit;;
+esac
+
+case $2 in
+/*) 	echo Errore: $2 non dirrelativo
+	exit;;
+*) 	;;
+esac
+
+case $3 in
+/*) 	echo Errore: $3 non nomefile relativo
+	exit;;
+*) 	;;
+esac
+
+if test ! -d $1 
+then
+echo Errore: Primo parametro non un direttorio
+exit
+fi
+
+PATH=$PATH:`pwd`
+export PATH
+
+cd $1
+trovagerarchia $2 $
+
+#trovafile nomefile
+
+if test -f $1 -a -r $1
+then	
+echo `pwd`/$1 >> /tmp/temp
+fi
+
+for i in *
+do
+if test -d $i -a -x $i	
+then
+		cd $i
+		trovafile $*
+		cd ..
+fi
+done
+
+#trovagerarchia nomedir nomefile
+
+for i in *
+do
+if test -d $i -a -x $i
+then
+cd $i
+	if test $i = $1
+	then
+		echo Trovata gerarchia `pwd`
+		trovafile $2
+		if test -s /tmp/temp 
+			then echo Dammi il nome del file su cui appendere
+			read f
+			filtro `cat /tmp/temp` >> $f
+			rm /tmp/temp
+		fi
+	fi
+	trovagerarchia $1 $2
+cd ..
+fi
+don
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
+
+void head(fw, fr, n) 	
+int fw; int fr; int n; 	
+/* la funzione head() scrive sul file fw, n linee del file fr */
+{ 	int i;	char c;
+
+  i = 1;
+  while (read(fr, &c, 1))
+      	{ 	write(fw, &c, 1);
+		if 	(c == '\n') 
+{ 	i++;
+if (i > n) return;
+ 		     	}
+      	}
+}
+
+main(argc, argv)
+int argc; char **argv;
+{	int *fd, i;
+	char eoln = '\n';
+
+if (argc < 2) { puts("Errore nel numero di parametri"); exit(-1); }
+	/* controlliamo che sia stato inserito almeno un parametro */
+fd = (int *) malloc(argc - 1);	/* allochiamo un numero di interi (che conterranno 
+file descriptor) pari al numero di ulteriori file passati come parametri */
+for (i = 1; i < argc; i++)	/* ciclo di aperture degli ulteriori file con relativi controlli 
+*/
+	if ((fd[i-1] = open(argv[i], O_RDONLY)) < 0)
+	       { puts("Errore in apertura"); exit(-3); }
+
+for (i = 1; i < argc; i++)	/* per ogni ulteriore file */
+	{ write(1, argv[i], strlen(argv[i]));	/* scriviamo il suo nome */
+	write(1, &eoln, 1);	/* con il carattere di EOLN  e poi */
+	head(1, fd[i-1], i);	/* scriviamo un numero di linee pari alla posizione relativa 
+nella lista */
+	  }
+}
+
+29 Novembre 1996 - 4
+
+

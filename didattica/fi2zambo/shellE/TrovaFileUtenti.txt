@@ -1,0 +1,45 @@
+# ese11a utente dirnames
+# trova il file corrispondente
+# dopo invoca ese11b e ese11c
+
+PATH=$HOME/CALCOLATORI:$PATH
+
+UTENTE=$1
+cd /home/deis33/franco
+
+export UTENTE;export PATH
+
+shift #cosi elimino da $* il primo argomento 
+
+ese11b $*
+
+
+----------------------------------------------------------
+
+# ese11b
+
+for i in * #cioe per ogni file del direttorio
+do
+if [ -d $i ]
+then
+  for j in $* #cioe per ogni argomento passato
+  do
+    if [ $i = $j ]
+    then cd $i;ese11c $*;cd ..
+    else cd $i; ese11b $*;cd ..
+    fi
+  done
+fi
+done
+
+
+-----------------------------------------------------------------------
+# ese11c dirnames
+
+echo `pwd` $* $UTENTE
+ls -lga | grep $UTENTE > /usr/tmp/file
+echo ritrovato `pwd`
+cat /usr/tmp/file
+rm /usr/tmp/file
+ese11b $*
+

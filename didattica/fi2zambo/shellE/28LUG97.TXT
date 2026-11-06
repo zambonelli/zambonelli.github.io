@@ -1,0 +1,127 @@
+Fondamenti di Informatica - Esame Scritto del 18 Luglio 1997
+
+Esercizio 2
+
+Si progetti utilizzando il linguaggio C e le funzioni primitive che operano 
+sui file un filtro filtro che accetta un numero variabile di parametri 
+(maggiore o uguale ad 1) che corrispondono a nomi relativi di file f1,...., 
+fn. Il filtro deve riportare sullo standard output alternatamente un carattere 
+di f1, un carattere di f2, ..., un carattere di fn, e poi di nuovo un carattere 
+di f1, un carattere di f2, fino alla terminazione di tutti i file.
+
+Inoltre, utilizzando il Bourne Shell di UNIX, si progetti un algoritmo che 
+preveda un numero variabile di parametri (maggiore o uguale a 3): il 
+primo parametro deve essere il nome assoluto di un direttorio, il secondo 
+un nome relativo di direttorio, mentre i successivi devono essere singoli 
+caratteri (C1, ..., Ck). 
+Il programma deve cercare nella gerarchia specificata dal primo parametro 
+tutti i direttori il cui nome relativo corrisponde al secondo parametro: si 
+riporti il nome assoluto di tali direttori sullo standard output. In ognuno 
+dei direttori trovati, si devono identificare tutti i file il cui nome inizi con 
+uno dei caratteri dati come parametri (C1, ..., Ck): si riporti il nome 
+assoluto di tali file sullo standard output. Quindi, per ognuno dei direttori 
+trovati, si applichi il filtro filtro che accetta come parametri i nomi di tutti 
+i file identificati.
+
+
+/* Filtro 18 Luglio 1997 */
+
+#include <stdio.h>
+#include<fcntl.h>
+
+main(argc,argv)
+int argc;char **argv;
+{int *fd, i, finiti=0;
+ char car;
+
+if (argc<2) 	{puts("Errore parametri");    exit(-1);   }
+
+fd = (int*)malloc(argc*sizeof(int));
+
+for (i=0;i<argc;i++) 
+{	fd[i]=open(argv[i],O_RDONLY);
+  		if (fd[i]<0) 
+{	printf("Errore in apertura file %s\n",argv[i+1]);
+                                   	exit(-2);            }
+}
+ 
+while (finiti<argc) 
+{	
+                	for (i=0;i<argc;i++) 
+{	if (fd[i]> 0) 
+if (read(fd[i],&car,1)>0)
+write(1,&car,1);
+                           		else { 	fd[i] = -1;
+                           				finiti++; 	}
+}
+}
+
+for (i=0;i<argc;i++) close(fd[i]);
+
+
+
+/* Shell 18 Luglio 1997 */
+#File compito
+case $# in
+0 | 1 | 2) echo Errore nel numero dei parametri : $0 dirass dirrel C1 ... CK
+           exit 1;;
+*) ;;
+esac
+case $1 in
+/*) 	;;
+*) 	echo Errore: deve essere il nome assoluto di una dir
+exit 2;;
+esac
+case $2 in
+/*) 	echo Errore: deve essere il nome relativo di una dir
+	exit 3;;
+*) 	;;
+esac
+PATH=$PATH:`pwd`
+export PATH
+DIRASS=$1
+DIRREL=$2
+export DIRREL
+shift
+shift
+
+for i in $*
+do
+	if test `echo $i | wc -c` -gt 2
+	then
+		echo errore i parametri dopo 2 devono essere caratteri
+	fi
+# oppure: case $i in
+#			?) OK un solo carattere ......
+done
+
+cd $DIRASS
+cercadir $*
+
+#file cercadir
+
+for i in *
+do 	if test -d $i -a -x $i
+   	then 	cd $i
+        		if test $i = $DIRREL
+        		then 	echo Trovata directory `pwd`
+             		for j in $*
+             		do 	
+for k in $j*
+                			do 
+if test -f $k
+                   			then 	echo Trovato file `pwd`/$k
+                        				echo $k >> /tmp/temp
+                   			fi
+                			done
+             		done
+             		if test -f /tmp/temp
+             		then filtro `cat /tmp/temp`
+			rm /tmp/temp
+             		fi
+        		fi
+        		cercadir $*
+		cd ..
+   	fi
+done
+

@@ -1,0 +1,97 @@
+
+Filtro 2
+
+
+Si progetti, utilizzando il linguaggio C e le primitive di basso livello che 
+operano sui file, un filtro filtro che accetta un parametro che deve essere 
+considerato un numero intero positivo (N).  Il filtro filtro deve riportare 
+sullo standard output una selezione delle linee dello standard input: 
+in particolare, in uscita devono essere riportati N linee si' e N linee 
+no, fino alla fine dello standard input.
+
+
+Prima Soluzione
+
+
+/* Soluzione che legge un carattere alla volta e lo accumula in un array che
+rappresenta la linea corrente: alla fine di ogni linea si incrementa il
+contatore di linee e si verifica se la linea deve essere scritta o meno
+in base alla legge dell'alternanza. Notare che il contatore di linea
+viene azzerato ogni 2 * N */
+#include <stdio.h>
+#include <stdlib.h>
+#include <io.h>
+#include <fcntl.h>
+
+main(int argc, char **argv)
+{
+int i=0, n=0, N;
+char ch, s[200];
+
+if (argc != 2)  { puts("Errore nel numero di parametri"); exit(-1);  }
+
+N = atoi(argv[1]);
+if (N <= 0)  { puts("Errore nel numero passato"); exit(-2);  }
+
+while (read(0, &ch, 1))
+        { s[i] = ch;
+          i++;
+          if (ch == '\n')
+                { n++;
+                  if (n <= N) write(1, s, i);
+                  i = 0;
+                  if (n == 2 * N) n = 0;
+                }
+        }
+if (ch != '\n')
+        { n++;
+        if (n <= N) write(1, s, i);
+        }
+}
+
+/* OSSERVAZIONE: funziona anche sull'ultima riga anche se questa non ha
+prima dell'end-of-file un end-of-line */
+
+
+
+============================================================
+
+Seconda Soluzione
+
+
+/* Soluzione che legge un carattere alla volta: se il carattere rappresenta
+la fine della linea si incrementa il contatore di linee; per ogni carattere
+si verifica in base ad un flag se deve essere scritto o meno; se il numero
+di linee arriva ad N, allora viene azzerato e il valore del flag viene
+invertito per garantire la legge dell'alternanza */
+#include <stdio.h>
+#include <stdlib.h>
+#include <io.h>
+#include <fcntl.h>
+#define TRUE  1
+#define FALSE 0
+
+main(int argc, char **argv)
+{
+int N, n=0, scrivi = TRUE;
+char ch;
+
+if (argc != 2)  { puts("Errore nel numero di parametri"); exit(-1);  }
+
+N = atoi(argv[1]);
+if (N <= 0)  { puts("Errore nel numero passato"); exit(-2);  }
+
+while (read(0, &ch, 1))
+        {
+          if (ch == '\n')  n++;
+          if (scrivi) write(1, &ch, 1);
+          if (n == N) { scrivi = ! scrivi;
+                        n = 0;
+                        }
+        }
+}
+
+/* OSSERVAZIONE: funziona anche sull'ultima riga anche se questa non ha
+prima dell'end-of-file un end-of-line */
+
+

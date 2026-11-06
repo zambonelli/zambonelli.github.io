@@ -1,0 +1,12 @@
+# e' un comando tipo il which ma me li stampa tutti
+#ese6 file
+
+
+for i in `echo $PATH | tr ':' ' '`
+do
+  if [ -f $i/$1 ]
+  then echo $i/$1
+#    exit se mettessimoo un exit qui si comporterebbe come il which
+  fi
+done
+

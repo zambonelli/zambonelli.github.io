@@ -1,0 +1,155 @@
+/*
+ *  egscript.c
+ *
+ *  Example CGI Script file for use with HTTP.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+char InputBuffer[4096];
+
+
+/*
+ *  Visualizza tutte le variabili d'ambiente
+ */
+void DisplayEnvVars(void) {
+int i;
+
+    i = 0;
+    while (_environ[i]) {
+        printf("%s\n<BR>\n",_environ[i]);
+        i++;
+    }
+    printf("\n<BR>\n");
+}
+
+
+
+/*
+ *  Ritorna il valore della variabile
+ */
+char *ValueField(char *Item) {
+char *p;
+
+    p = strchr(Item,'=');
+    if (p==NULL) return NULL;
+    *p++='\0';
+	return p;
+}
+
+
+
+/*
+ *  Ritorna il valore della variabile Item contenuta nella stringa Field
+ */
+char *GetField(char *Item, char *Field) {
+char *p;
+char *s;
+
+    p = strtok(Field,"&");
+    while (p!=NULL) {
+        s = ValueField(p);
+		//printf("Valore di variabile(%s) = %s <BR>\n",p, s);
+		if (strcmp(p, Item) == 0) return s;
+        p = strtok(NULL,"&");
+    }
+
+	return NULL;
+}
+
+/*
+ *  Programma Principale
+ */
+int main(int argc, char *argv[]) {
+int ContentLength;
+int i;
+char *p;
+char *pRequestMethod;
+char *c;
+
+
+    /* Intestazione della pagina creata */
+    //printf("Content-type: text/plain\n");
+    printf("Content-type: text/html\n");
+
+    /* Fine dell'header */
+    printf("\n");
+
+
+
+    /* Scrive le variabili di input */
+    printf("argc = %d\n<BR>\n",argc);
+    for (i=0;i<argc;i++) {
+        printf("argv[%d] = %s\n<BR>\n",i,argv[i]);
+    }
+    printf("\n<BR>\n");
+
+    /* Visualizza le variabili d'ambiente */
+    DisplayEnvVars();
+
+    printf("\n");
+   
+	/* Acquisizione metodo di richiesta (POST o GET) */
+    pRequestMethod = getenv("REQUEST_METHOD");
+    if (pRequestMethod==NULL) {
+        return 0;
+    }
+
+    if (strcmp(pRequestMethod,"POST")==0) {
+        /* Read in the data from the client */
+        p = getenv("CONTENT_LENGTH");
+        if (p!=NULL) {
+            ContentLength = atoi(p);
+        } else {
+            ContentLength = 0;
+        }
+        if (ContentLength>sizeof(InputBuffer)-1) {
+            ContentLength = sizeof(InputBuffer)-1;
+        }
+		// legge da stdin la stringa inviata tramite POST
+		fgets(InputBuffer,ContentLength+1,stdin);
+		i = strlen(InputBuffer);
+		printf("Stringa inviata dal Form: <FONT COLOR=""blue"">%s</FONT>\n<BR>\n",InputBuffer);
+		// legge il valore della variabile d'ambiente CONTENT_TYPE
+        p = getenv("CONTENT_TYPE");
+        if (p==NULL) {
+            return 0;
+        }
+        if (strcmp(p,"application/x-www-form-urlencoded")==0) {
+			strcpy(p, InputBuffer);
+			// Trova il valore della variabile var1
+			c = GetField("var1", p);
+			if (c != NULL) {
+				printf("La variabile var1 vale: <FONT COLOR=""red""> %s </FONT>", c);
+			} else {
+					printf("La variabile var1 &egrave; NULL");
+			}
+        } else {
+            /* Visualizza i dati */
+            printf("Input = %s\n",InputBuffer);
+        }
+
+    } else 
+    if (strcmp(pRequestMethod,"GET")==0) {
+
+        /* Acquisizione della stringa inviata tramite FORM/GET */
+        p = getenv("QUERY_STRING");
+        if (p!=NULL) {
+            strncpy(InputBuffer,p,sizeof(InputBuffer));
+			printf("Stringa inviata dal Form: <FONT COLOR=""blue"">%s</FONT>\n<BR>\n",InputBuffer);
+			strcpy(p, InputBuffer);
+			c = GetField("var1", p);
+			if (c != NULL) {
+				printf("La variabile var1 vale: <FONT COLOR=""red""> %s </FONT>", c);
+			} else {
+					printf("La variabile var1 &egrave; NULL");
+			}
+        }
+
+    }
+    return 0;
+}
+

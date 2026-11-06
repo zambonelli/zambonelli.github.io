@@ -1,0 +1,45 @@
+
+Filtro 5
+
+
+Si progetti, utilizzando il linguaggio C e le primitive di basso livello 
+che operano sui file, un filtro filtro.  Il programma deve prevedere un 
+parametro che deve essere considerato un numero intero positivo (N).  
+Il filtro filtro deve riportare sullo standard output una selezione delle 
+linee dello standard input: in particolare, si deve riportare in uscita 
+tutte le linee, a parte la linea N-esima dello standard input.
+
+
+
+Soluzione
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <io.h>
+#include <fcntl.h>
+
+main(int argc, char **argv)
+{
+int fd, n, N;
+char ch;
+
+if (argc < 3) { puts("Errore nel numero di parametri"); exit(-1); }
+
+if ((fd = open(argv[1], O_RDONLY)) < 0)
+               { puts("Errore in apertura"); exit(-2); }
+
+N = atoi(argv[2]);
+
+n = 1;
+while (read(fd, &ch, 1))
+        { if (n != N) write(1, &ch, 1);
+          if (ch == '\n') n++;
+        }
+}
+
+/* OSSERVAZIONE: perche' funzioni anche sull'ultima riga questa deve
+avere prima dell'end-of-file un end-of-line */
+
+
+

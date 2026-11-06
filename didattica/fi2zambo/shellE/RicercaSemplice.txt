@@ -1,0 +1,42 @@
+# si cercano file con il nome specificato
+# che siano leggibili o scrivibili nella gerarchia a partire dal
+# nome specificato
+
+case $# in
+  0|1) echo Uso $0 dir file
+	 exit;;
+    2);;
+esac
+
+echo $PATH
+
+PATH=`pwd`:$PATH
+export PATH
+
+if test ! -d $1
+then echo errore: $1 non esiste come sottodirettorio
+exit;
+fi
+
+cd $1
+if test -f $2
+then 
+   if test -r $2 -o -w $2
+   then 
+      echo file $2; cat $2 
+      if test -r $2
+      then echo file $2 almeno leggibile in `pwd`
+      fi
+      if test -w $2
+      then echo file $2 almeno sccrivibile in `pwd`
+      fi
+   fi
+fi
+
+for i in *
+do
+  if test -d $i 
+  then ese3 $i $2
+  fi
+done
+

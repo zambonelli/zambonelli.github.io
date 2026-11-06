@@ -1,0 +1,19 @@
+ESAME DI FONDAMENTI DI INFORMATICA C - CdL Ing. El. & Inf. A-C - 18 Aprile 2001
+
+Si realizzi un programma per la gestione di dati relativi alle prenotazioni di una visita medica specialistica. In particolare, si dovranno gestire e aggiornare i dati relativi ai pazienti (Cognome, Data Visita, Anno Nascita, Codice Previdenza Sociale).
+
+Si organizzino i dati sfruttando le strutture dati ritenute più opportune a facilitare la gestione e la ricerca di dati.
+
+Il programma deve presentare all'utente le seguenti scelte:
+· inserimento di dati relativi a un nuovo paziente (punti 5);
+· visualizzazione ordinata secondo ordine alfabetico dei dati di tutti i pazienti (punti 5);
+· visualizzazione ordinata secondo l'anno di nascita (punti 6);
+· calcolo e visualizzazione della età media dei pazienti (punti 5);
+· memorizzazione su un file e recupero da un file dei dati dei pazienti (punti 9).
+
+Si strutturi il programma suddividendolo nei modi ritenuti più soddisfacenti e si sfruttino a piacere le librerie di cui si ha la disponibilità.
+
+
+
+
+

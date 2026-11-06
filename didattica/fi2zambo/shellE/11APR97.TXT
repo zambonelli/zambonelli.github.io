@@ -1,0 +1,118 @@
+Fondamenti di Informatica - Esame Scritto dell’11 Aprile 1997
+
+Esercizio 2
+
+Si progetti utilizzando il linguaggio C e le funzioni primitive che operano 
+sui file un filtro filtro che accetta come parametri i nomi di due file (F1 e 
+F2). Il file deve riportare sullo standard output una fusione dei caratteri di 
+F1 e F2: in particolare, in uscita deve essere riportato il primo carattere di 
+F1, l’ultimo di F2, il secondo di F1, il penultimo di F2 e cosi’ via. Il 
+procedimento deve avere termine non appena termina uno dei due file.
+
+Inoltre, utilizzando il Bourne Shell di UNIX, si progetti un algoritmo che 
+preveda un numero variabile di parametri (maggiore o uguale a 3): i primi 
+due parametri devono essere considerati nomi relativi di file, mentre gli 
+altri devono essere nomi assoluti di direttori (D1, ..., Dk) che identificano 
+delle gerarchie all’interno del file system. Il programma deve cercare nelle 
+gerarchie specificate D1, ..., Dk, tutti i direttori che contengono una 
+coppia di file leggibili aventi nome F1 e F2: si riporti il nome assoluto di 
+tali file sullo standard output. In ognuno dei direttori trovati si deve 
+applicare il filtro filtro passandogli come parametri i nomi dei due file 
+trovati.
+
+/* filtro */
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+
+void main (argc,argv)
+int argc;
+char **argv;
+{int fd,fd1,fd2;
+  long i;
+  char car;
+/* controllo del numero dei parametri*/
+        if (argc!=3)
+                { printf("errore sul numero dei parametri\n");  exit(-1); }
+/* apro i files in lettura*/
+        if ((fd1=open(argv[1],O_RDONLY))<0)
+                { printf("errore in file %s\n,argv[1]");                exit(-2); }
+        if ((fd2=open(argv[2],O_RDONLY))<0)
+                {printf("errore in file %s\n,argv[2]");                exit(-2);   }
+
+/* inizio del ciclo di lettura dei files*/
+        i=1;
+        fd=fd1;
+        while (read(fd,&car,1))
+                {
+                 write (1,&car,1);
+                 if (fd==fd1)
+                        {		fd=fd2;
+                         		lseek(fd,-i,2) ;
+                         		i++;                        }
+                 else
+                        {		fd=fd1;                 }
+                }
+}
+
+#parte in shell
+case $# in
+0|1|2) 	echo errore sul numero dei parametri
+                       	exit;;
+       	*) 		;; 
+esac
+F1=$1
+F2=$2
+export F1
+export F2
+shift
+shift
+
+for j 
+do
+case $j in
+              	/*) 	if test ! -d $j -o ! -x $j
+                           then echo errore direttorio $j
+                                   exit
+                            fi;;
+*) 	echo $j non e direttorio assoluto
+                           exit ;;
+    	esac
+done
+
+PATH=$PATH:/home/disk1/massifor/so
+export PATH
+
+for j
+do
+echo $j
+     	cercafile $j
+done
+
+#file cercafile
+cd $1
+fileexist1=no
+fileexist2=no
+
+for k in *
+do
+if test -d $k -a -x $k
+        		then 	echo sono nel direttorio `pwd`/$k
+                 		cercafile $k
+    		else 	if test -f $k -a -r $k
+                        	then 	case $k in
+$F1) 	fileexist1=si;;
+$F2) 	fileexist2=si;;
+esac
+                 		fi
+       		fi
+done
+  
+ if test $fileexist1 = si -a $fileexist2 = si
+ then 	echo li ho trovati nel direttorio `pwd`
+     		filtro $F1 $F2
+ fi
+
+
+

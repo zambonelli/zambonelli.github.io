@@ -1,0 +1,53 @@
+
+Filtro 3
+
+
+Si progetti, utilizzando il linguaggio C e le primitive di basso livello 
+che operano sui file, un filtro filtro che accetta un numero variabile 
+di parametri (maggiore o uguale a due): il primo parametro deve essere 
+considerato un numero intero positivo (N), mentre gli altri devono essere 
+considerati nomi di file (F1, ..., FN).  Il filtro filtro deve riportare 
+sullo standard output una selezione dei caratteri dei file F1, ..., FN: 
+in particolare, in uscita devono essere riportati i primi N caratteri 
+di F1, poi i secondi N caratteri di F2 (cioe' quelli da N+1 a 2N), 
+e cosi'  via fino a che non finisce uno qualsiasi dei file.
+NOTA: Si suggerisce la lettura di N caratteri per volta dai file.
+
+
+Soluzione
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+
+main(int argc, char **argv)
+{
+int N1, *fd, i, finito = 0, nr, j = 0;
+char *buffer;
+
+if (argc < 3) { puts("Errore nel numero di parametri"); exit(-1); }
+N1 = atoi(argv[1]);
+buffer = (char *) malloc(N1);
+fd = (int *) malloc(sizeof(int) * (argc - 2));
+
+for (i = 2; i < argc; i++)
+        if ((fd[i-2] = open(argv[i], O_RDONLY)) < 0)
+               { puts("Errore in apertura"); exit(-2); }
+
+puts("");
+while (!finito)
+        { for (i = 0; i < argc - 2; i++)
+                { nr = read(fd[i], buffer, N1);
+                  if (i == (j % (argc - 2)))
+                                write(1, buffer, nr);
+                  /* if (nr < N1) { finito = 1; break; }
+                  problemi su fine linea */
+                  if (nr == 0) { finito = 1; break; }
+                }
+          j++;
+        }
+}
+
+
+

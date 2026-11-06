@@ -1,0 +1,12 @@
+# si visualizza il contenuto dei file passati come argomento 
+# chiedendo prima assenso allo utente
+
+for i
+do
+  echo -n "$i si/?"
+  read answer
+  case $answer in
+     y*|Y*|s*|S*) cat $i;;
+  esac
+done
+

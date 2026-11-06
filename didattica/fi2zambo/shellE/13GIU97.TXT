@@ -1,0 +1,130 @@
+Fondamenti di Informatica - Esame Scritto del 13 Giugno 1997
+
+Esercizio 2
+
+Si progetti, utilizzando il linguaggio C e le primitive di basso livello che 
+operano sui file, un filtro filtro che accetta come parametri i nomi di due 
+file (f1 e f2).  Il filtro filtro deve leggere dal file f1 una linea alla volta. 
+Una selezione dei caratteri di ogni linea va riportata sul file f2 secondo 
+questa regola: per ogni linea dispari si devono riportare su f2 i caratteri 
+dispari della linea, mentre per ogni linea pari si devono riportare suf2 i 
+caratteri pari della linea.
+
+Inoltre, utilizzando il Bourne Shell di UNIX, si progetti un algoritmo che 
+preveda un numero variabile di parametri (maggiore od uguale a 3): il 
+primo parametro deve essere il nome assoluto di un direttorio che 
+identifica una gerarchia all'interno del file system (G), mentre gli altri 
+devono essere considerati nomi relativi di file (F1...FN). Si controlli 
+preventivamente che ognuno dei nomi Fi sia un nome distinto.  Il 
+programma deve verificare in ogni direttorio della gerarchia G specificata 
+(dal livello di partenza in poi) che esistano almeno due file il cui nome 
+corrisponda ad uno dei nomi F1...FN. Per ogni coppia di file così 
+determinata, dopo aver verificato che uno sia leggibile e l'altro sia 
+scrivibile, si riporti il nome assoluto di tali file sullo standard output.  Per 
+ogni coppia di file che verifica le condizioni precedenti, si deve applicare 
+il filtro filtro passando come parametri i nomi dei file trovati (f1 sia il file 
+leggibile e f2 sia il file scrivibile). 
+
+
+
+#filtro
+#include<stdlib.h>
+#include<sys/stat.h>
+#include<fcntl.h>
+#include<stdio.h>
+
+main(argc,argv)
+int argc;
+char **argv;
+ {int fd1,fd2,linea=1,c=0;
+ char ch, eol=’\n’;
+
+ if((fd1=open(argv[1],O_RDONLY))<0){printf("err ap\n");exit(-2);}
+ if((fd2=open(argv[2],O_WRONLY))<0){printf("err cre\n");exit(-3);}
+
+while(read(fd1,&ch,1)>0)
+ 	{	if (c != '\n')
+       			{	c++;
+        				if((linea % 2 == 0) && (c % 2 == 0))
+            								write(fd2,&ch,1);
+        				else 	if((linea % 2 !=0) && (c % 2 != 0))
+            								write(fd2,&ch,1);
+        			}
+       		else if(ch == '\n')
+         		{	write(fd2,&eol,1);
+          			linea++;c=0;	}
+  	}
+close(fd1);
+close(fd2);
+
+
+#file compito
+case $# in
+   	0|1|2)	echo errore nel numero dei parametri;exit;;
+   	3|*)		if test ! -d $1
+         		then echo errore non un direttorio;exit
+       			else 	case $1 in
+                			/*);;
+                 			*)echo errore deve essere un nome assoluto;exit;;
+                 		esac
+        			fi
+        			;;
+ esac
+
+PATH=$PATH:`pwd`
+export PATH
+
+DIRASS=$1
+shift
+for i in $*
+do 	cont=0
+    	for j in $*
+       	do 	if test $j = $i
+            	then cont=` expr $cont + 1 `
+          	fi
+       	done
+       	if test $cont -ne 1
+         then 	echo due file con uguale nome tra i parametri
+exit
+fi
+done
+
+cd $DIRASS
+Trovafile $*
+
+#file Trovafile
+
+for i in $*
+do
+	if test -f $i
+	then
+		for j in $*
+		do
+			if test -f $j -a $i != $j
+			then
+				echo esiste almeno una coppia
+				if test -r $i -a -w $j
+				then
+				   echo coppia in ` pwd` leggibile $i scrivibile $j
+				   filtro $i $j
+				else
+				    if test -w $i -a -r $j
+				    then
+				      echo coppia in pwd leggibile $j scrivibile $i
+				      filtro $j $i
+				    fi
+				fi
+			fi
+		done
+	fi
+done
+
+for i in *
+do
+	if test -d $i
+	then
+		cd $i
+		Trovafile $*
+		cd ..
+	fi
+done

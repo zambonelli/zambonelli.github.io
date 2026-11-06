@@ -1,0 +1,58 @@
+#per ogni direttorio in cui ci sono almeno 4 file leggibili
+# e scrivibili in cui e' contenuto il 2 arg
+# si stampino tali file chiedendo il consenso all'utente
+
+# conta direttorioassolto stringa
+
+
+PATH=$PATH:$HOME/CALCOLATORI/SHELL
+export PATH
+
+case $# in
+0|1) 	echo errore nei parametri; exit 1;;
+*)   	if test ! -d $1
+     	then echo primo argomento deve essere direttorio; exit 2
+     	else
+       		case $1 in
+       		/*) ;;
+       		*) nome di direttorio non assoluto; exit 3;;
+       		esac
+     	fi
+     	;;
+esac
+
+cd $1
+# mi porto nel direttorio e metto il contatore a zero
+conta=0
+# ciclo su tutti i file per contare quelli che verificano la condizione
+for i in *
+do
+  	if test -f $i -a -r $i -a -w $i
+  	then	if grep $2 $i > /dev/null
+    		then	nomi="$nomi $1/$i"
+	 		conta=`expr $conta + 1`
+    		fi
+  	fi
+done
+# adesso guardo se ce n'erano abbastanza e li visualizzo
+if test $conta -ge 4
+then	echo ne ho trovati almeno 4 in $1
+  	for i in $nomi
+  	do
+    		echo $i
+  	done
+else
+  	echo non ve ne erano 4
+fi
+
+# chiamo ricorsivamente conta per i sottodirettori
+for i in *
+do
+  	if test -d $i
+  	then conta $1/$i $2
+  	fi
+done
+
+Conta 3
+
+

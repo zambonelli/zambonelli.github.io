@@ -1,0 +1,60 @@
+/*
+ * genera N processi figli
+ * poi attende che il figlio M sia terminato
+ */
+
+
+#include <stdio.h>
+
+main(int argc, char *argv[])
+{
+  int i, N, M;
+  int pid, status, apid;
+  
+  if (argc < 3)
+  {
+    printf("USO: %s N M\ngenera N processi figli e aspetta l'M-esimo\n\n", argv[0]);
+    exit(0);
+  }
+  
+  N = atoi(argv[1]);
+  M = atoi(argv[2]);
+  if (N < M)
+  {
+    printf("Errore: il secondo parametro deve essere <= del primo\n\n");
+    exit(1);
+  }
+
+  printf("padre %d genera %d figli e aspetta il %d-esimo\n", getpid(), N, M);
+  
+  for (i=0; i < N; i++)
+  {
+    if ((pid = fork()) < 0)
+    {
+      printf("Errore nella fork\n\n");
+      exit(1);
+    }
+    if (pid == 0) /* il figlio */
+    {
+      printf("figlio %d del padre %d\n", getpid(), getppid());
+      break;  /* esce dal ciclo */
+    }
+    else
+      if ((i+1) == M) /* se e' l'M-esimo processo generato */
+        apid = pid; /* deve essere aspettato */
+  }
+  
+  
+  if (pid != 0) /* padre */
+  {
+    printf("generati %d figli\n", N);
+    sleep(3);
+    pid = 0;
+    while ((pid != apid) && (pid >= 0))
+    {
+      pid = wait(&status);
+      printf("il figlio %d ha terminato con stato %d\n", pid, (status>>8));
+    }
+  }
+  else exit(i);
+}

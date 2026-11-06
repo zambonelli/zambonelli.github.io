@@ -1,0 +1,1695 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Corso Introduttivo a JavaScript</TITLE>
+
+
+
+<SCRIPT>
+
+<!--
+function forLoopExample() {
+	var n = 0;
+	for (var i = 0; i < 3; i++) {
+		n += i;
+		alert("The value of n is now " + n);
+	}
+}
+
+function whileLoopExample() {
+	var n = 0;
+	var x = 0;
+	while(n < 3) {
+		n++;
+		x += n;
+		alert("The value of n is " + n + ". The value of x is " + x);
+	}
+}
+
+function anotherAlert(word) {
+
+		alert(word + ' is the word that you clicked on');
+
+}
+
+
+
+function secondAlert(word,password) {
+
+		confirm(word + ' is the word that you clicked on. The secret password is ' + password);
+
+}
+
+
+
+function thirdAlert(word,password) {
+
+		confirm(word + ' is the word you clicked on. Please take note of the password, ' + password);
+
+}
+
+
+
+// -->
+
+</SCRIPT>
+
+
+
+</HEAD>
+
+
+
+<h1><a name="top"><font color="#00868b">Corso Introduttivo a JavaScript</font></h1>
+</center>
+
+<P>
+
+<OL>
+
+	<LI><A HREF="javascript-tutorial.html#1">Introduction</A>
+
+	<LI><A HREF="javascript-tutorial.html#2">Embedding JavaScript into an HTML Document</A>
+
+	<LI><A HREF="javascript-tutorial.html#3">Variables</A>
+
+		<OL>
+
+		<LI><A HREF="javascript-tutorial.html#3.1">What are Variables?</A>
+
+		<LI><A HREF="javascript-tutorial.html#3.2">Values of Variables</A>
+
+		<LI><A HREF="javascript-tutorial.html#3.3">Data Type Conversion</A>
+
+		</OL>
+
+	<LI><A HREF="javascript-tutorial.html#4">Literals</A>
+
+		<OL>
+
+		<LI><A HREF="javascript-tutorial.html#4.1">Integers</A>
+
+		<LI><A HREF="javascript-tutorial.html#4.2">Floating-Point Literals</A>
+
+		<LI><A HREF="javascript-tutorial.html#4.3">Boolean Literals</A>
+
+		<LI><A HREF="javascript-tutorial.html#4.4">String Literals</A>
+
+		<LI><A HREF="javascript-tutorial.html#4.5">Escaping Literals</A>
+
+		</OL>
+
+	<LI><A HREF="javascript-tutorial.html#5">Arrays</A>
+
+	<LI><A HREF="javascript-tutorial.html#6">Operators</A>
+
+		<OL>
+
+		<LI><A HREF="javascript-tutorial.html#6.1">Selected Assignment Operators</A>
+
+		<LI><A HREF="javascript-tutorial.html#6.2">Comparison Operators</A>
+
+		<LI><A HREF="javascript-tutorial.html#6.3">Selected Arithmetic Operators</A>
+
+		<LI><A HREF="javascript-tutorial.html#6.4">Logical Operators</A>
+
+		</OL>
+
+	<LI><A HREF="javascript-tutorial.html#7">Using JavaScript Objects</A>
+
+	<LI><A HREF="javascript-tutorial.html#8">Functions</A>
+
+		<OL>
+
+		<LI><A HREF="javascript-tutorial.html#8.1">Defining a Function</A>
+
+		<LI><A HREF="javascript-tutorial.html#8.2">Calling a Function</A>
+
+		</OL>
+
+	<LI><A HREF="javascript-tutorial.html#9">If/Then Statements</A>
+
+	<LI><A HREF="javascript-tutorial.html#10">Loops</A>
+
+		<OL>
+
+		<LI><A HREF="javascript-tutorial.html#10.1">for Loops</A>
+
+		<LI><A HREF="javascript-tutorial.html#10.2">while Loops</A>
+
+		</OL>	
+
+	<LI><A HREF="javascript-tutorial.html#11">Commenting</A>
+
+	<LI><A HREF="javascript-tutorial.html#12">On-Line Help</A>
+
+</OL>
+
+
+
+
+
+<P>
+
+<A NAME=1> </A>
+
+<H2>1.  Introduction</H2>
+
+
+
+<P>JavaScript is a simple programming language that can be
+
+written directly into HTML documents to allow for increased interactivity with
+
+the user. For example, JavaScript can be used to <A
+
+HREF="http://www.coolnerds.com/jscript/alancalc.htm">create online
+
+calculators</A> or show the <A
+
+HREF="http://javascript-world.com/scripts/clocks/access03.html">current date and
+
+time</A>.
+
+
+
+<A NAME=2> </A>
+
+<H2>2.  Embedding JavaScript into your HTML document</H2>
+
+Browsers that recognize
+
+JavaScript also recognize the special &lt;SCRIPT&gt; ... &lt;/SCRIPT&gt; tag. This
+
+tag goes in the &lt;HEAD&gt; of your HTML document, along with your &lt;TITLE&gt;
+
+tag. Here's a short example: <PRE>&lt;HTML&gt;<br>&nbsp;<br>&lt;HEAD&gt; <br>&nbsp;<br>&lt;TITLE&gt;My JavaScript Page&lt;/TITLE&gt; <br>&nbsp;<br>&lt;SCRIPT&gt; <br>(JavaScript code goes in here)
+
+<br>&lt;/SCRIPT&gt; <br>&nbsp;<br>&lt;/HEAD&gt; <br>&nbsp;<br>(rest of your HTML document goes here) </PRE>
+
+
+
+
+
+<P>To make an object (such as an image, a form button, or a hyperlink) on your
+
+page do something in response to a user action, you can add an additional
+
+attribute to the tag for that object. For example, the following HTML snippet
+
+pops up a thank you message when the user clicks on the link: <P><CODE>&lt;A
+
+HREF="http://www.dsi.unimo.it/Staff/st35/Zambonelli.idc"
+
+onClick="alert('Thanks for visiting Franco's home page!')"&gt;Franco home page&lt;/A&gt;</CODE> <P>Try it yourself! Just click on the
+
+following link: <A
+
+HREF="http://www.dsi.unimo.it/Staff/st35/Zambonelli.idc"
+
+onClick="alert('Thanks for visiting Franco home page!')">Franco home page</A>
+
+<P>You're familiar with the HREF="" attribute that specifies the URL that the
+
+link points to, but note the additional onClick="" attribute. The stuff between
+
+those quotation marks is JavaScript code, which in this case pops up an alert box
+
+with the specified message. (Don't worry if you don't understand the stuff
+
+between the quotation marks; you'll learn it later on. The important thing right
+
+now is to understand the additional attribute.)
+
+
+
+<P>
+
+Another point to recognize is that if a browser does not understand the &lt;SCRIPT&gt; tag, it will skip over it, and the
+
+text that is between the two tags (your code, basically) will appear on the screen as ordinary text.
+
+Since you want to create an HTML page that is viewable on all browsers, you would want to prevent this
+
+from happening.<P>
+
+To prevent this from happening, you should include the characters &lt;!-- immediately following the &lt;SCRIPT&gt; tag and
+
+the characters --&gt; immediately preceding the &lt;/SCRIPT&gt; tag.  In HTML in general, using this set of characters allows you to write comments to yourself that
+
+the browser will not read or display on the page.  Inside the JavaScript tags, the browser ignores these characters.  By doing this, a non-JavaScript readable browser
+
+will see the comment notation and ignore the text between them (which is your code). Your code would then look like this:
+
+<P>
+
+<CODE>
+
+&lt;HEAD&gt; <BR>
+
+&lt;SCRIPT&gt; <BR>
+
+&lt;!-- <BR>
+
+<P>
+
+(Your code goes here...)
+
+<P>
+
+--&gt; <BR>
+
+&lt;/SCRIPT&gt; <BR>
+
+&lt;/HEAD&gt;<BR>
+
+</CODE>
+
+
+
+<P>
+
+
+
+<A NAME=3> </A>
+
+<H2>3.  Variables</H2>
+
+<P>
+
+
+
+<A NAME=3.1> </A>
+
+<H3>3.1.  What are Variables?</H3>
+
+<P>
+
+Variables are like storage units.  You can create variables to hold values.  It is ideal to name
+
+a variable something that is logical, so that you'll remember what you are using it for.  For example, if you were
+
+writing a program to divide 2 numbers, it
+
+could be confusing if you called your variables numberOne, numberTwo, numberThree because you may forget which one
+
+is the divisor, which one is the dividend, and which one is the quotient.
+
+A more logical approach would be to name them just that: divisor, dividend, quotient.
+
+<P>
+
+It is important to know the proper syntax to which variables must conform:
+
+<P>
+
+<UL>
+
+<LI>They must start with a letter or underscore ("_")
+
+<LI>Subsequent characters can also be digits (0-9) or letters (A-Z and/or a-z). Remember, JavaScript is case-sensitive. (That means that MyVariable and myVariable are two different names to JavaScript,
+because they have different capitalization.)
+
+</UL><P>
+
+Some examples of legal names are <CODE>Number_hits</CODE>, <CODE>temp99</CODE>, and <CODE>_name</CODE>.
+
+
+
+<P>
+
+When you declare a variable by assignment outside of a function, it is called a global variable,
+
+because it is available everywhere in the current document. When you declare a variable within a
+
+function, it is called a local variable, because it is available only within the function. Using var is
+
+optional, but you need to use it if you have a variable that has been declared global and you want to re-declare it as a local variable inside a function.
+
+
+<P>
+
+Variables can store all kinds of data (see below, <A HREF="javascript-tutorial.html#3.2">Values of Variables</A>, section 3.2). 
+
+To assign a value to a variable, you use the following notation:
+
+<P>
+
+<PRE>
+
+dividend = 8;
+
+divisor = 4;
+
+myString = "I may want to use this message multiple times";
+message = myString;
+
+</PRE>
+
+
+
+Let's say the main part of the function will be dividing the dividend by the divisor and storing that number in a
+
+variable called <CODE>quotient</CODE>.  I can write this line of code in my program: <CODE>quotient = divisor*dividend</CODE>, and I have both stored
+
+the value of the quotient to the variable <CODE>quotient</CODE> and I have declared the variable at the same time.
+
+If I had wanted to, I could have declared it along with my other assigned variables above, with a value of null.
+
+After executing the program, the value of <CODE>quotient</CODE> will be 2.
+
+<P>
+
+It is important to think about the design of your program before you begin.  You should create the appropriate variables
+
+so that it makes your life easier when you go to write the program.  For instance, if you know that you will be
+
+coding a lot of the same strings in a message, you may want to create a variable called <CODE>message</CODE> and give it the
+
+value of your message.  That way, when you call it in your program, you do not have to retype the same sentence over and over again, and if you want to change
+
+the content of that message, you only have to change it once -- in the variable declaration.
+
+
+
+<A NAME=3.2> </A>
+
+<H3>3.2.  Values of Variables</H3>
+
+<P>
+
+JavaScript recognizes the following types of values:
+
+<UL>
+
+<LI>Numbers, such as 42 or 3.14159 
+
+<LI>Logical (Boolean) values, either true or false 
+
+<LI>Strings, such as "Howdy!" 
+
+<LI>null, a special keyword which refers to nothing
+
+</UL>
+
+<P>
+
+This relatively small set of types of values, or data types, enables you to perform useful functions with
+
+your applications. There is no explicit distinction between integer and real-valued numbers. 
+
+<P>
+
+
+
+
+
+<A NAME=3.3> </A>
+
+<H3>3.3.  Data Type Conversion</H3>
+
+<P>
+
+JavaScript is a loosely typed language. That means you do not have to specify the data type of a
+
+variable when you declare it, and data types are converted automatically as needed during script
+
+execution. So, for example, you could define a variable as follows:
+
+<P>
+
+<CODE>var answer = 42</CODE>
+
+<P>
+
+And later, you could assign the same variable a string value, for example,
+
+<P>
+
+<CODE>answer = "Thanks for all the fish..."</CODE>
+
+<P>
+
+Because JavaScript is loosely typed, this assignment does not cause an error message.
+
+However, this is not good coding! You should create variables for a specific type, such as an integer, string, or array, and be consistent in the values that you store in the variable. This prevents confusion when you are writing your program.
+
+<P>
+
+In expressions involving numeric and string values, JavaScript converts the numeric values to strings.
+
+For example, consider the following statements:
+
+<P>
+
+<CODE>x = "The answer is " + 42<BR>
+
+y = 42 + " is the answer."</CODE>
+
+<P>
+(The + sign tells JavaScript to concatenate, or stick together, the two strings. For example, if you write:<P>
+<CODE>message = "Hello" + "World"</CODE>
+<P>...then the variable <CODE>message</CODE> becomes the string <CODE>"Hello World"</CODE>)
+<P>In the first statement, x becomes the string "The answer is 42." In the second, y becomes the string "42 is the answer."
+
+<P>
+
+
+
+
+
+<A NAME=4> </A>
+
+<H2>4.  Literals</H2>
+
+<P>
+
+
+
+You use literals to represent values in JavaScript. These are fixed values, not variables, that you
+
+literally provide in your script. Examples of literals include: 1234, "This is a literal," and <CODE>true</CODE>.
+
+<P>
+
+
+
+<A NAME=4.1> </A>
+
+<H3>4.1.  Integers</H3>
+
+<P>
+
+Integers can be expressed in decimal (base 10), hexadecimal (base 16), and octal (base 8). A decimal
+
+integer literal consists of a sequence of digits without a leading 0 (zero). A leading 0 (zero) on an
+
+integer literal indicates it is in octal; a leading 0x (or 0X) indicates hexadecimal. Hexadecimal integers
+
+can include digits (0-9) and the letters a-f and A-F. Octal integers can include only the digits 0-7. 
+
+<P>
+
+Some examples of integer literals are: 42, 0xFFF, and -345.
+
+<P>
+
+
+
+<A NAME=4.2> </A>
+
+<H3>4.2.  Floating-point literals</H3>
+
+<P>
+
+A floating-point literal can have the following parts: a decimal integer, a decimal point ("."), a fraction
+
+(another decimal number), an exponent, and a type suffix. The exponent part is an "e" or "E" followed
+
+by an integer, which can be signed (preceded by "+" or "-"). A floating-point literal must have at least
+
+one digit, plus either a decimal point or "e" (or "E"). 
+
+<P>
+
+Some examples of floating-point literals are 3.1415, -3.1E12, .1e12, and 2E-12
+
+<P>
+
+
+
+<A NAME=4.3> </A>
+
+<H3>4.3.  Boolean literals</H3>
+
+<P>
+
+The Boolean type has two literal values: true and false.
+
+<P>
+
+
+
+<A NAME=4.4> </A>
+
+<H3>4.4.  String literals</H3>
+
+<P>
+
+A string literal is zero or more characters enclosed in double (") or single (') quotation marks. A string
+
+must be delimited by quotation marks of the same type; that is, either both single quotation marks or
+
+double quotation marks. The following are examples of string literals:
+
+<P>
+
+<UL>
+
+<LI>"blah" 
+
+<LI>'blah' 
+
+<LI>"1234" 
+
+<LI>"one line \n another line" 
+
+</UL>
+
+<P>
+
+In addition to ordinary characters, you can also include special characters in strings, as shown in the
+
+last element in the preceding list. The following table lists the special characters that you can use in
+
+JavaScript strings. 
+
+<TABLE BORDER=1>
+
+<TR><TH>Character</TH><TH>Meaning</TH></TR>
+
+<TR><TD>\b</TD><TD>backspace</TD></TR>
+
+<TR><TD>\f</TD><TD>form feed</TD></TR>
+
+<TR><TD>\n</TD><TD>new line</TD></TR> 
+
+<TR><TD>\r</TD><TD>carriage return</TD></TR> 
+
+<TR><TD>\t</TD><TD>tab</TD></TR>
+
+<TR><TD>\\</TD><TD>backslash character</TD></TR> 
+
+</TABLE>
+
+
+
+
+
+<A NAME=4.5> </A>
+
+<H3>4.5.  Escaping characters</H3>
+
+<P>
+
+For characters not listed in the preceding table, a preceding backslash is ignored, with the exception of a
+
+quotation mark and the backslash character itself.
+
+<P>
+
+You can insert quotation marks inside strings by preceding them with a backslash. This is known as
+
+escaping the quotation marks. For example,
+
+<P>
+
+<CODE>var quote = "He read \"The Cremation of Sam McGee\" by R.W. Service."<BR>
+
+document.write(quote)</CODE>
+
+<P>
+
+The result of this would be
+
+<P>
+
+<DD><CODE>He read "The Cremation of Sam McGee" by R.W. Service.</CODE></DD>
+
+<P>
+
+To include a literal backslash inside a string, you must escape the backslash character. For example, to
+
+assign the file path c:\temp to a string, use the following:
+
+<P>
+
+<CODE>var home = "c:\\temp"</CODE>
+
+
+
+
+
+
+
+
+
+<A NAME=5> </A>
+
+
+
+<H2>5.  Arrays</H2>
+
+<P>
+
+An Array is an object which stores multiple values and has various properties.
+
+When you declare an array, you must declare the name of it, and then how many values it will
+
+need to store.  It is important to realize that each value is stored in one of the elements of the array, and these elements start at 0.
+
+This means that the first value in the array is really in the 0 element, and the second number is really in the first element.
+
+So for example, if I want to store 10 values in my array, the storage elements would range from 0-9.
+
+<P>
+
+The notation for declaring an array looks like this:
+
+<P>
+
+<CODE>myArray = new Array(10);
+foo = new Array(5);
+</CODE><P>
+
+Initially, all values are set to null.  The notation for assigning values to each unit within the array looks like this:
+
+<P>
+
+<CODE>
+
+myArray[0] = 56; <BR>
+
+myArray[1] = 23; <BR>
+
+myArray[9] = 44; <BR>
+
+</CODE>
+
+<P>
+
+By putting the element number in brackets [ ] after the array's name, you can assign a value to that specific element. Note
+
+that there is no such element, in this example, as <CODE>myArray[10]</CODE>.  Remember, the elements begin at <CODE>myArray[0]</CODE> and
+
+go up to <CODE>myArray[9]</CODE>.
+
+<P>
+
+In JavaScript, however, an array's length increases if you assign a value to an element higher than the current length of the
+
+array. The following code creates an array of length zero, then assigns a value to element 99. This
+
+changes the length of the array to 100.
+
+<P>
+
+<CODE>
+
+colors = new Array();  <BR>
+
+colors[99] = "midnightblue";
+
+</CODE>
+
+<P>
+
+Be careful to reference the right cells, and make sure to reference them properly!
+
+
+
+<P>
+
+Because arrays are objects, they have certain properties that are pre-defined for your convenience.  For example,
+
+you can find out how many elements <CODE>myArray</CODE> has and store this value in a variable called <CODE>
+
+numberOfElements</CODE> by using:
+
+<P><CODE>
+
+numberOfElements = myArray.length;
+
+</CODE>
+
+
+
+<P>
+
+
+
+<A NAME=6> </A>
+
+<h2>6.  Operators</h2>
+
+
+
+<p>JavaScript has many different operators, which come in several flavors, including binary. This tutorial will
+
+cover some of the most essential assignment, comparison, arithmetic and logical  operators.</p>
+
+
+
+
+
+
+
+<A NAME=6.1> </A>
+
+
+
+<h3>6.1.  Selected assignment operators</h3>
+
+
+
+
+
+<p>An assignment operator assigns a value to its left operand based on the value of
+
+its right operand. The basic assignment operator is equal (=), which assigns the
+
+value of its right operand to its left operand. The other operators are shorthand for standard operations. Find an abridged  list of shorthand operators below:</p>
+
+
+
+<table border=1><tr>
+
+<td>Shorthand operator</td><td> Meaning</td></tr>
+
+<tr><td>    x += y   </td>   <td>    x = x + y   </td></tr>
+
+<tr><td>   x -= y    </td>   <td>   x = x - y   </td></tr>
+
+<tr><td>    x *= y    </td>   <td>   x = x * y   </td></tr>
+
+<tr><td>   x /= y    </td>   <td>   x = x / y    </td></tr>
+
+</table>
+
+<P>Note that the = sign here refers to assignment, not "equals" in the mathematical sense. So if x is 5 and y is 7, <CODE>x = x + y</CODE> is not a valid mathematical expression, but it works in JavaScript. It makes x the value of x + y (12 in this case).
+
+<p><b>EXAMPLES:</b> If x = 10 and y = 2, x += y would mean x = x + y, hence x's new value would be the sum of
+
+x's previous value plus y's previous value. Upon executing x = x + y = 10 + 2, x's new value becomes 12, while
+
+y's new value remains equal to its old value. Similarly, x -= y would change x's value to 8. Calculate x *= y and
+
+x /= y to get a better idea of how these operators work.</p>
+
+
+
+
+
+<A NAME=6.2> </A>
+
+
+
+<h3>6.2.  Comparison operators</h3>
+
+
+
+
+
+
+
+<p>A comparison operator compares its operands and returns a logical value based on
+
+whether the comparison is true or not. The operands can be numerical or string
+
+values. When used on string values, the comparisons are based on the standard
+
+lexicographical ordering. They are described in the following table.</p>
+
+
+
+
+
+<table border=1>
+
+<tr><td>  Operator   </td><td>     Description      </td><td>     Example      </td></tr>
+
+<tr><td>   Equal (= =)  </td><td>    Evaluates to true if the operands are equal.       </td><td>   x == y evaluates to true if x equals y.        </td></tr>
+
+<tr><td>  Not equal (!=)   </td><td>    Evaluates to true if the operands
+
+are not equal.       </td><td>      x != y evaluates to true if x is not equal to y.      </td></tr>
+
+<tr><td>    Greater than (>)  </td><td>     Evaluates to true if left operand is greater than right operand.      </td><td>     x > y evaluates to true if
+
+x is greater than y.       </td></tr>
+
+<tr><td>    Greater than or equal (>=)  </td><td>  Evaluates to true if left operand is
+
+greater than or equal to right operand.         </td><td>     x >= y evaluates to true if x is greater than
+
+or equal to y.      </td></tr>
+
+<tr><td>   Less than (<)   </td><td>     Evaluates to true if left operand is less than right
+
+operand.      </td><td>     x < y evaluates to true if x is less than y.      </td></tr>
+
+<tr><td>  Less than or equal (<=)   </td><td>    Evaluates to
+
+true if left operand is less than or equal to right operand.       </td><td>     x <= y evaluates to true
+
+if x is less than or equal to y.      </td></tr>
+
+</table>
+
+
+
+<p><b>EXAMPLES:</b> 5 == 5 would return TRUE. 5 != 5 would return FALSE. (The statement 'Five is not equal to
+
+five.' is patently false.) 5 <= 5 would return TRUE. (Five is less than or equal to five. More precisely, it's exactly
+
+equal to five, but JavaScript could care less about boring details like that.)</p>
+
+
+
+
+
+
+
+<A NAME=6.3> </A>
+
+
+
+<h3>6.3.  Selected Arithmetic Operators</h3>
+
+
+
+<p>Arithmetic operators take numerical values (either literals or variables) as
+
+their operands and return a single numerical value. The standard arithmetic
+
+operators are addition (+), subtraction (-), multiplication (*),  division
+
+(/) and remainder (%). These operators work as they do in other programming languages, as well as in standard algebra.</p>
+
+<p>Since programmers frequently need to add or subtract 1 from a variable, JavaScript has shortcuts for doing this. myVar++ adds one to the value of myVar, while myVar-- subtracts one from myVar.
+
+<p><b>EXAMPLES:</b> Let x = 3. <CODE>x++</CODE> bumps x up to 4, while <CODE>x--</CODE> makes x equal to 2.</p>
+
+
+<A NAME=6.4> </A>
+
+
+
+<h3>6.4.  Logical Operators</h3>
+
+
+
+<p>Logical operators take Boolean (logical) values as operands and return a Boolean
+
+value. That is, they evaluate whether each subexpression within a Boolean expression
+
+is true or false, and then execute the operation on the respective truth values. 
+
+Consider the following table:</p>
+
+
+
+
+
+
+
+<table border=1>
+
+<tr><td>  Operator   </td><td>     Usage     </td><td>     Description      </td></tr>
+
+<tr><td>    and (&&) </td><td>    expr1 && expr2       </td><td>    True if both logical expressions expr1 and expr2 are true. False otherwise.       </td></tr>
+
+<tr><td>   or  (||) </td><td>      expr1 || expr2     </td><td>     True if either logical expression
+
+expr1 or expr2 is true. False if both expr1 and expr2 are false.      </td></tr>
+
+<tr><td>  not  (!) </td><td>     !expr       </td><td>    False if expr is true; true if expr is false.      </td></tr>
+
+</table>
+
+<p><b>EXAMPLES:</b> Since we have now learned to use the essential operators, we can use them in conjunction with one
+
+another. See if you can work out why the following examples resolve the way they do:</p>
+
+
+
+<p> If x = 4 and y = 7, ((x + y + 2) == 13) && (((x + y) / 2) == 2) returns FALSE.</p> 
+
+<p> If x = 4 and y = 7, ((y - x + 9) == 12) || ((x * y) == 2) returns TRUE.</p> 
+
+<p> If x = 4 and y = 7, !((x/2 + y) == 9) || ((x * (y/2)) == 2) returns FALSE.</p> 
+
+
+
+<P>
+
+
+
+
+
+
+
+<A NAME=7> </A>
+
+<H2>7.  Using JavaScript Objects</H2>
+
+<p>When you load a document in your web browser, it creates a number of JavaScript objects
+
+with properties and capabilities based on the HTML in the document and other pertinent
+
+information. These objects exist in a hierarchy that reflects the structure of
+
+the HTML page itself.</p>
+
+
+
+<p>The pre-defined objects that are most commonly used are the <CODE>window</CODE> 
+
+and <CODE>document</CODE> objects. The <CODE>window</CODE> has methods that allow you to create new windows with the <CODE>open()</CODE> and <CODE>close()</CODE> methods. It also allows you to create message boxes using <CODE>alert(), confirm(),</CODE> and <CODE>prompt()</CODE>. Each displays the text that you put between the parentheses. For example, the following code:
+<P><CODE>alert("This is an alert box")</CODE>
+<P>...pops up an alert box displaying the given message. Try it yourself by clicking on <A onClick="alert('This is an alert box')">this link</A>.
+
+<P>The <CODE>document</CODE> object models the HTML page.
+
+The <CODE>document</CODE> object contains arrays which store
+
+all the components constituting the contents of your web page, such as images, links,
+
+and forms. You can access and call methods on these elements of your web page through the arrays.
+
+<p>The objects in this pre-defined hierarchy can be accessed and modified. 
+
+To refer to specific properties, you must specify the property name and all its
+
+ancestors, spelling out the complete hierarchy until the <CODE>document</CODE> object. A
+
+period, '.',  is used in between each object and the name of its property.
+
+Generally, a property / object gets its name from the NAME attribute of the HTML tag. For example, the following refers 
+
+to the <I>value</I> property of a text field named <I>text1</I> in a form named
+
+<I>myform</I> in the current document.<P>
+
+
+
+<PRE>document.myform.text1.value</PRE>
+
+
+
+Form elements can also be accessed through the aforementioned <CODE>forms</CODE> array of the <CODE>document</CODE>
+
+object. In the above example, if the form named <i>myform</i> was the first form
+
+on the page, and <i>text1</i> was the third field in the form, the following also
+
+refers to that field's value property.
+
+
+
+<pre>document.forms[0].elements[2].value</pre>
+
+
+
+Functions (capabiltiies) of an object can similarly be accessed using the period notation.
+
+For example, the following instruction resets the 2nd form in the document.
+
+
+
+<pre>document.forms[2].reset();</pre>
+
+
+
+<p>
+
+Click on one of the objects below to view the Netscape documentation on the specific
+
+properties and methods that that object has:
+
+<p>
+
+<center>
+
+<IMG SRC="nav_hier.gif" USEMAP="#nav_hier" border=0>
+
+<MAP NAME="nav_hier">
+
+<AREA SHAPE="RECT" ALT="" COORDS="0,1,76,27" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_t-z.htm#67013" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="48,76,120,102" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_f-g.htm#60829" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="46,167,121,195" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_d-e.htm#47667" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="46,260,121,285" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#84722" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="45,349,123,375" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#83926" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="155,126,229,154" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#84501" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="153,165,230,197" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#90746" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="155,205,228,237" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_a-c.htm#73597" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="153,246,231,281" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_a-c.htm#60954" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="154,370,230,402" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_f-g.htm#60597" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="268,0,343,32" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_t-z.htm#65386" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="268,44,341,74" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_t-z.htm#65229" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="267,166,342,199" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#83862" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="268,206,344,240" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_s-s.htm#73448" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="267,247,344,280" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_r-r.htm#26487" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="267,290,344,322" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_r-r.htm#26345" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="268,330,343,362" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_a-c.htm#63502" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="268,371,342,404" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_a-c.htm#62518" TARGET="">
+
+<AREA SHAPE="RECT" ALT="" COORDS="268,414,343,443" HREF="http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_s-s.htm#72585" TARGET="">
+
+<AREA SHAPE="DEFAULT" NOHREF>
+
+</MAP>
+
+</center>
+
+
+
+<P>
+
+
+
+<A NAME=8> </A>
+
+<H2>8.  Functions</H2>
+
+<P>
+
+Functions are one of the fundamental building blocks in JavaScript. A function is
+
+a JavaScript procedure -- a set of statements that performs a specific task. A
+
+function definition has these basic parts:
+
+<UL>
+
+<LI>The function keyword
+
+<LI>A function name
+
+<LI>A comma-separated list of arguments to the
+
+function in parentheses
+
+<LI>The statements in the function in curly braces: { }
+
+</UL>
+
+<P>
+
+
+
+<A NAME=8.1> </A>
+
+<H3>8.1.  Defining a Function</H3>
+
+<P>
+
+When defining a function, it is <I>very</I> important that you pay close attention to the syntax.
+
+Unlike HTML, JavaScript is case sensitive, and it is very important to remember to enclose a
+
+function within curly braces { }, separate parameters with commas, and use a semi-colon at the end
+
+of your line of code.
+
+<P>
+
+It's important to understand the difference between <I>defining</I> and <I>calling</I> a
+
+function.
+
+<P>
+
+Defining the function names the function and specifies what to
+
+do when the function is called. You define a function within the &lt;SCRIPT&gt;...&lt;/SCRIPT&gt; tags within the &lt;HEAD&gt;...&lt;/HEAD&gt; tags.
+
+In defining a function, you must also declare the variables which you will be calling in that function.
+
+<P>
+
+Here's an example of <I>defining</I> a function:</p>
+
+<PRE>
+
+function popupalert() {
+
+		alert('This is an alert box.');
+
+}
+
+</PRE></p>
+
+<P>
+
+Notice the parentheses after the function name.  It is imperative that you include these parentheses, even if they are empty.  If you want to pass a <I>parameter</I> into the function, you would include that parameter inside of the parentheses. A parameter is a bit of extra information that cn be different each time the function is run. It is stored in a variable and can be accessed just like any other variable. Here's an example of a function that takes a parameter:
+
+<PRE>
+
+function anotherAlert(word) {
+
+		alert(word + ' is the word that you clicked on');
+
+}
+
+</PRE>
+
+When you call this function, you need to pass a parameter (such as the word that the user clicked on) into the function. Then the function can use this information. You can pass in a different word as a parameter each time you call the function, and the alert box will change appropriately. You'll see how to pass a parameter a little later on.
+
+<P>
+
+<A NAME=example1> </A>
+
+You can pass in multiple parameters, by separating them with a comma.  You would want to pass in a few parameters if you
+
+have more than one variable that you either want to change or use in your function.
+
+Here are two examples of passing in multiple parameters when you are defining the function:
+
+
+
+<P>
+
+<PRE>
+
+function secondAlert(word,password) {
+
+		confirm(word + ' is the word that you clicked on. The
+
+				secret password is ' + password);
+
+}
+
+
+
+function thirdAlert(word,password) {
+
+		confirm(word + ' is the word you clicked on. Please
+
+				take note of the password, ' + password);
+
+}
+
+</PRE>
+
+<P>
+
+You'll notice that the same parameters are passed into both of these functions.  However, you can pass in whatever values
+
+you want to use (see this same <A HREF="javascript-tutorial.html#example">example below</A> in calling the function).
+
+
+
+
+
+<A NAME=8.2> </A>
+
+<H3>8.2.  Calling a Function</H3>
+
+<P>
+
+Calling the function actually performs the
+
+specified actions.  When you call a function, this is usually within the BODY of the
+
+HTML page, and you usually pass a parameter into the function.  A parameter is a variable from
+
+outside of the defined function
+
+on which the function will act.
+
+<P>
+
+
+
+
+
+<p>Here's an example of <U>calling</U> the same function:</p>
+
+<CODE>
+
+<p>popupalert();</p>
+
+</CODE>
+
+<P>
+
+
+
+For the other example, this is how you may call it:
+
+<P>
+
+<PRE>
+
+&lt;A HREF="#top" onClick="anotherAlert('top')"&gt;top&lt;/A&gt;
+
+</PRE>
+
+<P>
+
+This would bring you to the top of the page, and bring up an alert box that said: "top is the word you clicked on"
+
+
+
+Try it for yourself: <A HREF="javascript-tutorial.html#top" onClick="anotherAlert('top')">top</A>
+
+<P>
+
+<A NAME=example> </A>
+
+Here is the same example with multiple parameters that was <A HREF="javascript-tutorial.html#example1">shown above</A>:
+
+<P>
+
+<PRE>
+
+&lt;A HREF="#top" onClick="secondAlert('awesome','pandas')"&gt;awesome&lt;/A&gt;
+
+&lt;A HREF="#top" onClick="thirdAlert('computers','insert')"&gt;computers&lt;/A&gt;
+
+
+
+</PRE>
+
+
+
+
+
+<P>
+
+You'll notice in the code that different values for the variables <CODE>word</CODE> and <CODE>password</CODE> are
+
+passed in.  These values here are what the function will need to perform the actions in the function.  Make sure that the
+
+values you pass in are in the correct order because the function will take them in and assign these values to the parameters
+
+in the parentheses  of the function declaration. Once you pass values into your function, you can use them however you want within
+
+your function.
+
+<P>
+
+Try it for yourself:<P>
+
+
+
+When you click on the words below, a confirmation box will pop up and then the link will bring you to the top of the page.
+
+<P>
+
+
+
+<A HREF="javascript-tutorial.html#top" onClick="secondAlert('awesome','pandas')">awesome</A><BR>
+
+<A HREF="javascript-tutorial.html#top" onClick="thirdAlert('computers','insert')">computers</A>
+
+
+
+
+
+
+
+
+
+<P>
+
+<A NAME=9> </A>
+
+<H2>9.  If/Else Statements</H2>
+
+
+
+<tt>if</tt> statements execute
+
+ a set of commands if a specified condition is true.
+
+If the condition is false, another set of statements can be executed through the use of the 
+
+<tt>else</tt> keyword.<P>
+
+
+
+<p>The main idea behind <tt>if</tt> statements is embodied by the sentence: "If the weather's 
+
+good tomorrow,
+
+we'll go out and have a picnic and Lisa will do cartwheels -- else, we'll stay in and Catherine will watch TV."</p>
+
+
+
+<p>As you can see, the idea is quite intuitive and, surprisingly enough, so is the syntax:</p>
+
+
+
+<PRE>
+<B>if</B> (<I>condition</I>) {
+	<I>statements1</I>
+}
+</PRE>
+-or-
+<PRE>
+<B>if</B> (<I>condition</I>) {
+	<I>statements1</I>
+}
+<B>else</B> {
+	<I>statements2</I>
+}
+</PRE>
+<P>(An <B>if</B> statement does not require an <B>else</B> statement following it, but an <B>else</B> statement must be preceded by an <B>if</B> statement.)
+
+
+
+<P><I>condition</I> can be any JavaScript expression that evaluates to true or
+
+false. Parentheses are required around the condition. If <I>condition</I>
+
+evaluates to true, the statements in <I>statements1</I> are executed.<P>
+
+
+
+
+
+<I>statements1</I> and <I>statements2</I> can be any JavaScript statements,
+
+including further nested <B>if</B> statements. Multiple statements must be
+
+enclosed in braces.<P></A>
+
+
+
+
+
+<p>Here's an example:</p>
+
+
+
+
+
+
+
+<PRE>
+<B>if</B> (weather == 'good') {
+	go_out(we);
+	have_a_picnic(we);
+	do_cartwheels(Lisa);
+}
+<B>else</B> {
+	stay_in(we);
+	watch_TV(Catherine);
+}
+</PRE>
+
+
+
+<P>
+
+
+
+
+
+
+
+
+
+
+
+<A NAME=10> </A>
+
+<H2>10.  Loops</H2>
+
+<p>Loops are an incredibly useful programming tool. Loops handle repetitive tasks extremely well,
+
+especially in the context of consecutive elements. Arrays immediately spring too mind here, since array elements
+
+are numbered consecutively. It would be quite intuitive (and equally practical), for instance, to write a loop that added 1 to each
+
+element within an array. Don't worry if this doesn't make a lot of sense now, it will, after you finish reading the tutorial.<p>
+
+
+
+<p>The two most common types of loops are <tt>for</tt> and <tt>while</tt> loops:
+
+
+
+
+
+<A NAME=10.1> </A>
+
+<H3>10.1.  for Loops</h3>
+
+
+
+
+
+<p>A <tt>for</tt> loop constitutes a statement which consists 
+
+of three expressions,
+
+enclosed in parentheses and separated by semicolons, followed by a block of
+
+statements executed in the loop.
+
+<p>This definition may, at first, sound confusing. Indeed, 
+
+it is hard to understand
+
+<tt>for</tt> loops without seeing them in action.</p>
+
+
+
+<p>A <tt>for</tt> loop resembles the following:</p>
+
+
+
+<PRE>
+for (<I>initial-expression</I>; <I>condition</I>; <I>increment-expression</I>) {
+	<I>statements</I>
+}
+</PRE>
+
+
+
+
+
+<p>The <I>initial-expression</I> is a statement or variable declaration. (See the 
+
+section on variables for more information.) It is typically
+
+used to initialize a counter variable. This expression may optionally declare new
+
+variables with the <tt>var</tt> keyword.<P>
+
+
+
+<p>The <I>condition</I> is evaluated on each pass through the loop. If this condition
+
+evaluates to true, the statements in <I>statements</I> are performed. When the condition
+evaluates to false, the execution of the <CODE>for</CODE> loop stops. This
+
+conditional test is optional. If omitted, the condition always evaluates to
+
+true.<P>
+
+
+
+<p>The <I>increment-expression</I> is generally used to update or increment the counter
+variable.<P>
+
+<p>The <I>statements</I> constitute a block of statements that are executed as long as
+
+<I>condition</I> evaluates to true. This can be a single statement or multiple
+
+statements. Although not required, it is good practice to indent these statements
+
+from the beginning of the <tt>for</tt> statement to make your code more readable.<P>
+
+
+
+<p>Check out the following <tt>for</tt> statement. It starts 
+
+by declaring the variable <I>i</I> and
+
+initializing it to zero. It checks whether <I>i</I> is less than nine, performs the
+
+two successive statements, and increments <I>i</I> by one after each pass through
+
+the loop:<P>
+
+
+
+<PRE>
+var n = 0;
+for (var i = 0; i &lt; 3; i++) {
+	n += i;
+	alert("The value of n is now " + n);
+}
+</PRE>
+
+Try it yourself: <A HREF="javascript:forLoopExample()">Click this link</A>
+
+
+
+<A NAME=10.2> </A>
+
+
+
+<H3>10.2.  while Loops</h3>
+
+
+
+The <tt>while</tt> loop, although most people would not recognize it as such, is <tt>for</tt>'s twin.
+
+The two can fill in for one another - using either one is only a matter of 
+
+convenience or preference according to context. <tt>while</tt> creates a loop that evaluates 
+
+an expression, and if it is true,
+
+executes a block of statements. The loop then repeats, as long as the specified
+
+condition is true.<P></A>
+
+
+
+The syntax of <tt>while</tt> differs slightly from that of <tt>for</tt>:
+
+
+
+<PRE>
+<B>while</B> (<I>condition</I>) {
+	<I>statements</I>
+}
+</PRE>
+
+
+
+
+
+
+
+<I>condition</I> is evaluated before each pass through the loop. If this
+
+condition evaluates to true, the statements in the succeeding block are
+
+performed. When <I>condition</I> evaluates to false, execution continues with the
+
+statement following <I>statements</I>.<P>
+
+
+
+
+
+<I>statements</I> is a block of statements that are executed as long as the
+
+<I>condition</I> evaluates to true. Although not required, it is good practice to
+
+indent these statements from the beginning of the statement.<P>
+
+
+
+
+
+
+
+The following <tt>while</tt> loop iterates as long as <I>n</I> is less than
+
+three.<P></A>
+
+<PRE>
+var n = 0;
+var x = 0;
+while(n &lt; 3) {
+	n++;
+	x += n;
+	alert("The value of n is " + n + ". The value of x is " + x);
+}
+</PRE>
+
+
+<P>Try it for yourself: <A HREF="javascript:whileLoopExample()">Click this link</A>
+
+
+<A NAME=11> </A>
+
+
+
+<H2>11.  Commenting</H2>
+
+Comments allow you to write notes to yourself within your program.  These are important because they
+
+allow someone to browse your code and understand what the various functions do or what your variables represent.
+
+Comments also allow you to understand your code if it's been a while since you last looked at it.
+
+<P>
+
+In JavaScript, you can write both one-line comments and multiple line comments.  The notation for each is different though.
+
+For a one line comment, you precede your comment with //.  This indicates that everything written on that line, after the
+
+//, is a comment and the program should disregard it.
+
+<P>
+
+For a multiple-line comment, you start with /* and end with */ .  It is nice to put an * at the beginning of each
+
+line just so someone perusing your code realizes that he/she is looking at a comment (if it is really long this helps). 
+
+This is not necessary though.
+
+<P>
+
+The following are examples of comments in JavaScript.
+
+<p>
+
+<pre>
+// This is a single line comment.
+
+/* This is a multiple line comment with only one line. */
+
+/* This is a multiple line comment.
+ * The star (*) at the beginning of this line is optional.
+ * So is the star at the beginning of this line. */
+</pre>
+
+ 
+
+ <P>
+
+ <A NAME=12>
+
+ <H2>12.  On-Line Help</H2>
+
+ For more detailed explanations or further help, see <A HREF=http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/index.html>Netscape's JavaScript Reference Guide for
+
+ JavaScript 1.1</A>.  Make sure that if you consult other sources that they are refering to JavaScript 1.1.  This is the version that is compatible with
+
+ Netscape 3.0, so if you use code that is not recognized by JavaScript 1.1, it will not work when your paged is browsed in Netscape 3.0.
+
+ 
+<p>
+
+
+<HR>
+
+<ADDRESS>This tutorial was adapted from the Netscape Reference Source for 
+<A HREF="http://www.cs.brown.edu/courses/cs002/">CS2</A> at Brown 
+University, Spring 1998, by Lisa Cozzens, Amanda Kudler, and Izel Sulam <BR>
+It was slightly modified for use in <A HREF="http://www.cs.brown.edu/courses/bridge">A
+Bridge to Computer Science</A>, Summer 1998, by Lisa Cozzens.
+</ADDRESS>
+
+
+
+</BODY> </HTML>
+	

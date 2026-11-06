@@ -1,0 +1,22 @@
+# esempio 1
+# si inseriscono in un file il cui nome è dato come parametro 
+# delle linee lette da input che soddisfano 
+# certe condizioni
+# non si cancella il contenuto precedente del file
+
+#insert file
+
+while echo "vuoi finire (si/no)?";read fine;test $fine != si 
+do 
+	echo inserisci la stringa
+	read a 
+	echo $a
+	case $a in 
+	?[b-g]*a)           		echo OK1;echo $a >> $1;; 
+	?s*[0-9]?|[0-9]s)   	echo OK2;echo $a >> $1;;
+	??o*[2-9])          		echo OK3;echo $a >> $1;;
+	??[a-Z]*r?|?r[A-Z]) 	echo OK3;echo $a >> $1;;
+	*)			echo NO case;; 
+	esac 
+done
+

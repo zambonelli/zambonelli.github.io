@@ -1,0 +1,628 @@
+<html>
+<head>
+<title>Corso Introduttivo su HTML</title>
+</head>
+
+<P><H1>Corso Introduttivo su HTML</H1></P></CENTER>
+
+<UL>
+<LI><A HREF="html.html#intro">Introduction</A></LI>
+<LI><A HREF="html.html#general">General Structure</A></LI>
+<LI><A HREF="html.html#body">The Body Tag</A></LI>
+<LI><A HREF="html.html#tag">How To Tag Your HTML Content</A></LI>
+<UL>
+<LI><A HREF="html.html#paragraph">Paragraph</A></LI>
+<LI><A HREF="html.html#htpertext">Hypertext Reference Anchor</A></LI>
+<LI><A HREF="html.html#image">Image</A></LI>
+<LI><A HREF="html.html#embed">Embed</A></LI>
+<LI><A HREF="html.html#bold">Bold</A></LI>
+<LI><A HREF="html.html#italic">Italic</A></LI>
+<LI><A HREF="html.html#underline">Underline</A></LI>
+<LI><A HREF="html.html#strikethrough">Strikethrough</A></LI>
+<LI><A HREF="html.html#font">Font</A></LI>
+<LI><A HREF="html.html#heading">Heading</A></LI>
+<LI><A HREF="html.html#list">Unordered and ordered lists</A></LI>
+<LI><A HREF="html.html#line">Horizontal line</A></LI>
+</UL>
+<LI><A HREF="html.html#tables">Tables</A></LI>
+<LI><A HREF="html.html#forms">Forms</A></LI>
+<LI><A HREF="html.html#frames">Frames</A></LI>
+<LI><A HREF="html.html#external">External Resources</A></LI>
+</UL>
+<P><HR></P>
+<P><H3><A NAME="intro">Introduction</A></H3></P>
+
+<P>HTML (<B>H</B>yper<B>T</B>ext <B>M</B>arkup <B>L</B>anguage) is one 
+of the most popular and accessible markup languages available. If you
+have spent any time on the World Wide Web, you have encountered HTML,
+as it is used to author Web documents such as this tutorial. 
+HTML gives you the power to create structured multimedia documents
+with relative ease, and offers a variety of tags to achieve a wide range of
+page designs.</P>
+
+<P>This tutorial will discuss tags up to and including those covered
+by the HTML version 3.2 specifications. HTML 3.2 is fully supported by 
+versions 3 and later of the two most popular Web browsers, Netscape
+Navigator and Microsoft Internet Explorer.</P>
+
+<P><HR></P>
+
+<P><H3><A NAME="general">General Structure</A></H3></P>
+
+<P>The structure of an HTML document resembles the following:</P>
+
+<PRE>&#60;HTML&#62;
+
+&#60;HEAD&#62;
+&#60;TITLE&#62;The title of your document goes here.&#60;/TITLE&#62;
+&#60;/HEAD&#62;
+
+&#60;BODY&#62;
+Your HTML code goes here.
+&#60;/BODY&#62;
+
+&#60;/HTML&#62;
+
+</PRE>
+
+<P>Certain tags are interpreted correctly by Netscape
+Navigator and Internet Explorer even
+if the tags are not included between the &#60;BODY&#62; and
+&#60;/BODY&#62;  tags. Those cases, however, constitute exceptions
+rather than the rules; therefore, you should keep your HTML code in
+the BODY of your document.</P>
+
+
+<P>One notable exception to this rule is JavaScript, a simple
+object-oriented programming language integrated into both Netscape
+Navigator and Internet Explorer. JavaScript allows the HTML author to
+include programming elements in any web page. Such elements may range
+from simple functionalities, such as popping up an alert box when the
+user clicks on a button, to complex programs, such as games or
+calculators. JavaScript function declarations belong between the
+&#60;HEAD&#62;  and &#60;/HEAD&#62;  tags.</P>
+
+<P><HR></P>
+
+<P><H3><A NAME="body">The Body Tag</A></H3></P>
+
+<P>The &#60;BODY&#62; tag can be used to give a whole
+new look to your HTML document. When declared simply as
+&#60;BODY&#62;, it usually comes as default with black text on a gray
+background, with unvisited links in blue, visited links in purple and
+active links in red. However, an HTML document can override the
+defaults to declare an original color scheme. The &#60;BODY&#62;  tag
+can accept the following attributes:</P>
+
+
+<UL>
+<LI>The BACKGROUND attribute declares a tiled background image. Both
+.gif and .jpg formats are supported.</LI>
+<LI>The BGCOLOR attribute declares a solid background color.</LI>
+<LI>The TEXT attribute sets the color of the normal text throughout
+the page. The color value is represented as an RGB Triplet.</LI>
+<LI>The LINK attribute sets the color of the hyperlinks throughout the 
+page. Hyperlinks are special blocks of text which take you to a new page 
+when clicked.
+<LI>The VLINK attribute sets the color of the visited links throughout
+the page. A visited link is a hyperlink which has already
+been clicked.</LI>
+<LI>The ALINK attribute defines the active link color - the color that
+hyperlinks take on when clicked.</LI>
+</UL>
+
+<P>There are two ways to define colors for the BGCOLOR, TEXT, LINK,
+VLINK, and ALINK attributes. Most recent browsers allow you to use the 
+name of the color, such as "white" or "blue." If you want to use a
+more exotic color, however, you'll have to figure out its RGB
+(red-green-blue) value in hexadecimal. This is even less fun than it
+sounds, so unless you really enjoy using trial and error to find the
+perfect shade of burnt sienna, you'll probably want to use a utility
+that will figure out the value for you. An excellent one that's
+available on the Internet is <A
+HREF="http://www.hidaho.com/colorcenter/">ColorCenter</A>.</P>
+
+<P>Here's an example of a &#60;BODY&#62; tag:</P>
+
+
+<CODE>&#60;BODY BGCOLOR="black" TEXT="#30ff3d" LINK="#f89400"
+ALINK="purple" VLINK="#FF8DDD"&#62;</CODE>
+
+
+<P>This page has a fluorescent green text, hyperlinks in orange,
+active links in purple, and visited links in pink, all on a black
+background.</P>
+
+<P>A note of caution: It's a lot of fun to dream up crazy color
+schemes for your pages, but make sure that your text is still
+readable. If your page has white text on a flourescent yellow
+background, your visitors will not stick around very long.</P>
+
+<P><HR></P>
+<P><H3><A NAME="tag">How to Tag Your HTML Content</A></H3></P>
+
+
+<P>A successful presentation of your HTML content may be as important
+as the content itself, since the design will define the content's
+accessibility and appeal. The following tags will help you structure
+your document, placing text and graphics where they truly belong.</P>
+
+<P><HR WIDTH="50%"></P>
+
+<A NAME="paragraph"><PRE>&#60;P&#62;Your text goes here.&#60;/P&#62;</PRE></A>
+
+<P>The paragraph tag defines a new paragraph, and all the text that
+goes between &#60;P&#62; and &#60;/P&#62; appears as one whole block
+of text. HTML does not indent paragraphs. Paragraphs are aligned to
+the left by default, the ALIGN attribute which can take on the values
+RIGHT, CENTER or LEFT can be added to the &#60;P&#62; tag to dictate
+how the paragraph will be placed on the page. For instance,</P>
+
+<PRE>&#60;P ALIGN="RIGHT"&#62;blah blah blah&#60;/P&#62;</PRE>
+
+<P>would appear like this:</P>
+<P ALIGN="RIGHT">blah blah blah</P>
+
+<P>The &lt;P&gt; tag usually puts two lines between the end of one
+paragraph and the beginning of the next, but sometimes you just want text
+to appear on the next line. You can use the &lt;BR&gt; tag to do
+this:</P>
+<P><PRE>
+This text will appear on one line.&lt;BR&gt;
+And this text will appear on the very next line.
+</PRE></P>
+
+<P>This text will appear on one line.<BR>
+And this text will appear on the very next line.</P>
+
+<P><HR WIDTH="50%"></P>
+<A NAME="hypertext"><PRE>&#60;A HREF="http://www.your.hyperlink.goes.here.com/"&#62;Your hyperlink goes here.&#60;/A&#62;</PRE></A>
+<P>The hypertext reference anchor tag creates a hyperlink - a special
+block of text that takes you to a new URL when it is clicked. The
+specified URL can be a hypertext document address, in the form of
+<CODE>http://computername.domain.com/folder/filename.html</CODE>, or an email
+address,  in the form of
+<CODE>mailto:email_address@host.com</CODE>. Here are some
+examples:</P>
+
+<P><PRE>One excellent Web directory is &lt;A
+HREF="http://www.yahoo.com/"&gt;Yahoo.&lt;/A&gt; Yahoo links to all sorts of
+pages such as the &lt;A HREF="http://www.unimo.it/"&gt;University of Modena
+home page&lt;/A&gt;. Franco attends the University of Modena; you can email
+Franco (&lt;A HREF="mailto:franco.zambonelli@unimo.it"&gt;franco.zambonelli@unimo.it&lt;/A&gt;).</PRE></P>
+
+<P>When loaded in a Web browser, the above text will look like this:</P>
+<P>One excellent Web directory is <A
+HREF="http://www.yahoo.com/">Yahoo.</A> Yahoo links to all sorts of
+pages such as the <A HREF="http://www.unimo.it/">University of Modena
+home page</A>. Franco attend the University of Modena; you can email
+Franco (<A HREF="mailto:franco.zambonelli@unimo.it">franco.zambonelli@unimo.it</A>).</P>
+
+<p>One important attribute of the anchor tag is NAME, which allows you
+to define a "named anchor" at an arbitrary point in the page. This
+allows you to link to different points in the page, as the index for
+this tutorial does. To define a named anchor, enclose the text to link
+to with the &lt;a name="anchor_name"&gt; and &lt/a&gt; tags. To link
+to this anchor, use the # sign followed by anchor_name, as in &lt;a
+href="#anchor_name"&gt;Go to the named anchor&lt;/a&gt;. If the named
+anchor is on another page, specify the filename before the # sign, as
+in &lt;a href="filename.html#named_anchor"&gt;.</p>
+
+<p>For example, at the top of this section on hyperlinks is the
+following:</P>
+<P><CODE>&lt;A NAME="hypertext"&gt;[some text]&lt;/A&gt;</CODE></P>
+
+<P>Now, you can create a hyperlink to the top of this section with the 
+following:</P>
+<P><CODE>&lt;A HREF="#hypertext"&gt;Go to the top of this
+section&lt;/A&gt;</CODE></P>
+
+<P>This will appear as follows:</P>
+<P><A HREF="html.html#hypertext">Go to the top of this section</A></P>
+
+<P><HR WIDTH="50%"></P>
+
+<A NAME="image"><PRE>&#60;IMG&#62;</PRE></A>
+
+<P>The image tag allows you to embed images in an
+HTML document. The most important attributes for this tag are as
+follows:</P>
+
+<UL>
+<LI>The SRC attribute defines the source embedded in the document,
+such as the name of a .gif or .jpg image. Note that you must provide
+the full path to the image within the tag; that is, if you have the
+image <I>barney.gif</I> in a directory called <I>dinos,</I> then your
+tag would look like &#60;IMG SRC="dinos/barney.gif"&#62;. This
+attribute is required.
+<LI>The ALT attribute defines the alternative text that will be shown
+in the place of the picture in text-only browsers, in browsers which
+do not auto load images, or in any browser while the image is still
+loading. Recent browsers display the contents of the ALT attribute
+when you pass your mouse over an image. The ALT attribute should
+always be used to ensure usability for text-only browsers.</LI>
+<LI>The BORDER attribute defines the thickness of the border around an
+image, in pixels.</LI>
+<LI>The ALIGN attribute has many possible values,
+allowing you to precisely place the image with respect to the other
+objects within the document. Some of these values are LEFT, RIGHT,
+TOP, TEXTTOP, MIDDLE, ABSMIDDLE, BASELINE, BOTTOM and ABSBOTTOM.</LI>
+<LI>The WIDTH and HEIGHT attributes define the width and height of the
+picture, in pixels. Declaring these helps the browser allocate space
+for the picture ahead of time, therefore lowering download times.</LI>
+<LI>The VSPACE and HSPACE attributes specify vertical and horizontal
+margins around the image, in pixels.</LI>
+</UL>
+<P><HR WIDTH="50%"></P>
+<A NAME="embed"><PRE>&#60;EMBED&#62;</PRE></A>
+<P>The embed tag can be used to embed multimedia content in an HTML
+document, such as sound, video, and VRML. The embedded multimedia
+document is declared through the use of the SRC attribute:</P>
+<P><CODE>&lt;EMBED SRC="myvideo.avi"&gt;</CODE></P>
+
+<P><HR WIDTH="50%"></P>
+<A NAME="bold"><PRE>&#60;B&#62;Your text goes here.&#60;/B&#62;</PRE></A>
+
+<P>The bold tag does exactly what its name suggests - <B>it forms bold text.</B></P>
+<P><HR WIDTH="50%"></P>
+<A NAME="italic"><PRE>&#60;I&#62;Your text goes here.&#60;/I&#62;</PRE>
+
+<P>The italic tag also modifies the text, <I>this time italicizing it.</I></P>
+<P><HR WIDTH="50%"></P>
+<A NAME="underline"><PRE>&#60;U&#62;Your text goes here.&#60;/U&#62;</PRE></A>
+
+<P>The underline tag, not surprisingly, <U>underlines the text.</U></P>
+<P><HR WIDTH="50%"></P>
+<A NAME="strikethrough"><PRE>&#60;S&#62;Your text goes
+here.&#60;/S&#62;</PRE></A>
+
+<P>The strike-through tag draws a horizontal line across your text and
+<S>provides a crossed-out effect.</S></P>
+
+
+<P><HR WIDTH="50%"></P>
+
+<A NAME="font"><PRE>&#60;FONT&#62;Your text goes here.&#60;/FONT&#62;</PRE></A>
+
+<P>The font tag is utilized mainly to make use of its attributes,
+which can do weird and wonderful things to the text in your HTML
+document.</P>
+
+<UL>
+<LI>The SIZE attribute can take on values 1 through 7 (with 1 being
+the smallest size and 7 the largest) as well as +value or -value, to
+modify the current font size. For instance, if your browser has a SIZE 
+of 3 set as default and you declare &#60;FONT SIZE="-2"&#62;  at the
+beginning of your HTML document, the text until the &#60;/FONT&#62;
+tag will appear as FONT SIZE="1" (since 3 - 2 = 1). However, if you
+simply declare &#60;FONT SIZE="1"&#62;, you know that you are going to
+get FONT SIZE="1", no matter what the browser's settings may be.</LI>
+<LI>The FACE attribute takes on font names as values. It's usually a
+good idea to list a few font names, so that the browser will go
+through them in order and use the first font that it finds on the
+user's system. For instance, if you declare &#60;FONT FACE="Comic Sans
+MS,Footlight MT Light,Times New Roman"&#62;, your browser will try to
+find the first font on your system; it will start searching for the
+second one if the first one is not there; and failing that, it will
+resort to displaying the document in Times New Roman. Although this
+attribute is supported both by Netscape Navigator and Internet
+Explorer, it is not a part of HTML 3.2.</LI>
+<LI>The COLOR attribute, much like the same attribute for the <BODY>
+tag, modifies the color of the text. The color value is represented as 
+a name (e.g. "red") or a hexadecimal RGB triplet.</LI>
+</UL>
+
+<P><PRE>&lt;FONT SIZE="-1" FACE="Courier New,Courier"
+COLOR="red"&gt;This text is smaller and in a fixed-pitch font. It's
+also red.&lt;/FONT&gt; &lt;FONT SIZE="7" COLOR="blue"&gt;And this text 
+is really big and blue.&lt;/FONT&gt;</PRE></P>
+
+<P><FONT SIZE="-1" FACE="Courier New,Courier" COLOR="red">This text is 
+smaller and in a fixed-ptich font. It's also red.</FONT> <FONT
+SIZE="7" COLOR="blue">And this text is really big and blue.</FONT></P>
+
+<P><HR WIDTH="50%"></P>
+
+<A NAME="heading"><PRE>&#60;H1&#62;Your text goes here.&#60;/H1&#62;</PRE></A>
+
+<P>The heading tag, which ranges from &#60;H1&#62; to &#60;H6&#62;,
+largest to smallest, defines a heading - a bold title. Although
+heading tags can be achieved through the use of the &#60;FONT&#62; and
+&#60;B&#62; tags, they provide the semantic meaning that the enclosed
+text is a heading rather than normal text. The heading is aligned to
+the left by default, the ALIGN attribute, which can take on the values
+RIGHT, CENTER or LEFT, can be added to modify the placement of the
+text.</P>
+
+<P><PRE>&lt;H1&gt;This is a big heading that is
+left-aligned.&lt;/H1&gt;
+&lt;H5 ALIGN=RIGHT&gt;And this is a small heading that is
+right-aligned.&lt;/H5&gt;</PRE></P>
+
+<H1>This is a big heading that is left-aligned.</H1>
+<H5 ALIGN=RIGHT>And this is a small heading that is right-aligned.</H5>
+
+
+<P><HR WIDTH="50%"></P>
+
+<A NAME="list"><PRE></A>
+&#60;UL&#62;
+&#60;LI&#62;Item&#60;/LI&#62;
+&#60;LI&#62;Another item&#60;/LI&#62;
+&#60;/UL&#62;
+</PRE>
+
+
+<P>The unordered list tag creates a list of bullet points. Each
+separate bullet point is placed between a pair of &#60;LI&#62; and
+&#60;/LI&#62; tags. An ordered list can be created in exactly the same
+way, by specifying &#60;OL&#62; ... &#60;/OL&#62; rather than
+&#60;UL&#62; ... &#60;/UL&#62;. The OL tag supports the attribute TYPE
+with possible values A (A, B, C ... ), a (a, b, c ... ), I (I, II, III
+... ), i (i, ii, iii ... ) as well as the default (1, 2, 3 ... ). It
+also supports the attribute START which declares the number that the
+list begins with.</P>
+
+<P><PRE>
+&lt;UL&gt;
+&lt;LI&gt;This is an unordered list&lt;/LI&gt;
+&lt;LI&gt;It uses bullet points&lt;/LI&gt;
+&lt;/UL&gt;
+&lt;OL&gt;
+&lt;LI&gt;And this is an ordered list&lt;/LI&gt;
+&lt;LI&gt;It uses numbers&lt;/LI&gt;
+&lt;/OL&gt;
+</PRE></P>
+
+<UL>
+<LI>This is an unordered list</LI>
+<LI>It uses bullet points</LI>
+</UL>
+
+<OL>
+<LI>And this is an ordered list</LI>
+<LI>It uses numbers</LI>
+</OL>
+
+<P><HR WIDTH="50%"></P>
+<A NAME="line"><PRE>&#60;HR&#62;</PRE></A>
+
+<P>The &#60;HR&#62; tag displays a nice horizontal line on the
+screen. It is useful for visually separating different sections of
+your document. You can define the width of the line using the WIDTH
+attribute. The WIDTH can be specified as a pixel value (e.g. 100) or a
+percentage of the screen (e.g. 50%). You can also define the lines
+thickness in pixels using the SIZE attribute, its alignment using the
+ALIGN attribute (possible values are LEFT, RIGHT, CENTER with CENTER
+being default), and finally its 3D look with the NOSHADE attribute (
+possible values are YES or NO).</P>
+
+<P><HR></P>
+
+<P><H3><A NAME="tables">Tables</A></H3></P>
+
+<P>Tables can be extremely useful in defining a grid within which you can place various objects, such as blocks of text, images, sound, or video. A table is placed between a pair of &#60;TABLE&#62; ... &#60;/TABLE&#62; tags. Some of the most important attributes supported by the &#60;TABLE&#62;  tag are as follows: </P>
+
+<UL>
+<LI>The WIDTH and HEIGHT attributes declare the width and height of
+the table, either in pixels or as a percentage of the size your
+browser window. For instance, &#60;TABLE WIDTH="50%"&#62;  declares a
+table that is half as wide as your browser window. Resizing the window
+automatically resizes the table.</LI>
+<LI>The ALIGN attribute, much like its &#60;P&#62;  counterpart, takes
+on the values LEFT, RIGHT and CENTER with LEFT as default. It
+specifies the placement of the table within the browser window.</LI>
+<LI>The VALIGN attribute specifies the placement of the data within
+table data cells. It takes on the values TOP, BOTTOM, BASELINE or
+CENTER with CENTER as default.</LI>
+<LI>The BGCOLOR specifies a solid background color for the table.</LI>
+<LI>The BORDER tag defines the thickness of the table border, the
+CELLPADDING tag defines the space between the cell data and cell
+wall., and the CELLSPACING tag defines the space between cells, all in
+pixels.</LI>
+</UL>
+
+<P>Once you declare a table, you must declare each table row
+separately by using a pair of &#60;TR&#62; ... &#60;/TR&#62; tags. You
+must then declare the columns within a row as distinct table data
+cells by using a pair of &#60;TD&#62; ... &#60;/TD&#62; tags. Table
+data cells must be nested within their respective table rows, which
+must in turn be nested within their respective table.</P>
+
+<P>&#60;TD&#62; and &#60;TR&#62; tags can take on all the attributes
+supported by &#60;TABLE&#62;. An attribute declared by a specific
+&#60;TD&#62; overrides the same attribute declared by its parent
+&#60;TR&#62;, which in turn overrides the same attribute declared by
+its parent &#60;TABLE&#62; .</P>
+
+<P>Additional attributes supported by &#60;TD&#62;  are the following:</P>
+<UL>
+<LI>The NOWRAP attribute takes on the values YES or NO. It dictates
+whether cell data wraps to fit the width of the cell.
+<LI>The COLSPAN and ROWSPAN attributes specify how many columns and
+rows the data item spans, in respective order. The default for both
+attributes is 1. Note that each row must have the same number of
+cells, although the number of &#60;TD&#62; tags you nest within a pair
+of &#60;TR&#62; ... &#60;/TR&#62; tags defines how your table data
+items use those particular cells. With proper use of the COLSPAN and
+ROWSPAN attributes, you can get a single data item (a block of text,
+an image etc...) to stretch across multiple cells, horizontally or
+vertically.</LI>
+</UL>
+<P>Check out the following HTML code, and the <A
+HREF="table.html">table</A> that it creates:</P>
+
+<PRE>
+
+&#60;TABLE CELLPADDING="5" CELLSPACING="10" BORDER="2" WIDTH="100" HEIGHT="100"&#62;
+	&#60;TR ALIGN ="CENTER"&#62;
+		&#60;TD&#62;&#60;STRONG&#62;Item One&#60;/STRONG&#62;&#60;/TD&#62;
+		&#60;TD BGCOLOR="#888fff">Item Two&#60;/TD&#62;
+	&#60;/TR&#62;
+	&#60;TR BGCOLOR="#ffaaff"&#62;
+		&#60;TD COLSPAN="2"&#62;Item Three, plus a description&#60;/TD&#62;
+	&#60;/TR&#62;
+&#60;/TABLE&#62;
+
+</PRE>
+
+<P><HR></P>
+
+<P><H3><A NAME="forms">Forms</A></H3></P>
+
+<P>Forms allow the user to enter information into a series of fields,
+such as text fields, radio buttons, checkboxes, and pull-down
+menus. This information can then be submitted either to an email
+address, or more regularly, to a CGI script that processes this
+information.</P>
+
+<P>The &#60;FORM&#62; ... &#60;/FORM&#62; tag can take on the ACTION
+attribute, which specifies the URL to which the data will be
+submitted. It also supports the METHOD attribute, which can take on
+the values GET or POST, with POST being most commonly used. The
+following tags must all be nested between
+a pair of &#60;FORM&#62; ... &#60;/FORM&#62; tags:</P>
+
+<P>The &#60;INPUT&#62;  tag constitutes the most important form
+element. It defines a field input format by taking on the TYPE
+attribute with one of the values TEXT, CHECKBOX, RADIO, SUBMIT, or
+RESET.</P>
+<UL>
+<LI>A TEXT field is a simple, one-line field.</LI>
+<LI>A CHECKBOX allows more than one box to be selected at a time.</LI>
+<LI>A RADIO button lets the user select one value among several options.</LI>
+<LI>The SUBMIT button sends in a form with the current field values.</LI>
+<LI>The RESET button sets all the fields back to their default values.</LI>
+</UL>
+<P>The NAME attribute defines the field name for the INPUT tag, and
+the optional VALUE attribute defines the default value for the field.</P>
+
+<P>The &#60;SELECT&#62; ... &#60;/SELECT&#62;  tag specifies a
+pull-down menu. It can take on a NAME attribute which, like its
+counterpart in the INPUT tag, specifies the name of the field being
+declared. A pull-down menu contains numerous options, each of which is
+defined by an <OPTION> ... </OPTION> tag. The OPTION tag takes on a
+VALUE attribute, which defines the name of the field being
+declared. Each text string that appears in the pull-down menu goes
+between a pair of &#60;OPTION&#62; ... &#60;/OPTION&#62;    tags. All
+&#60;OPTION&#62; ... &#60;/OPTION&#62;    tags must be nested within a
+pair of &#60;SELECT&#62; ... &#60;/SELECT&#62;   tags.</P>
+
+<P>The &#60;TEXTAREA&#62; ... &#60;/TEXTAREA&#62;     tag defines a
+scrollable, multi-line text field where the user can input ASCII
+text. It can take on a NAME attribute, which defines the field
+name. The default value for the textarea is the text in between the
+&#60;TEXTAREA&#62; and &#60;/TEXTAREA&#62; tags. The number of rows
+and columns can be defined through the use of ROWS and COLS
+attributes. Finally, the WRAP attribute, which can take on the values
+PHYSICAL or VIRTUAL, automatically wraps text around when the end of
+the text area is reached.</P>
+
+<P>If this all sounds somewhat confusing, take a look at this
+<A HREF="forms.html">forms example</A>.</P>
+
+<P><HR></P>
+
+<P><H3><A NAME="frames">Frames</A></H3></P>
+
+<P>The use of frames is cause for much debate among HTML
+experts. While some claim that  frames can be a powerful tool for
+navigation and for factoring out code from web pages, others contend
+that frames are inherently ugly and should be executed on the
+spot. The following will give you an overview of how frames work and
+what they are capable of.</P>
+
+The &#60;FRAMESET&#62; ... &#60;/FRAMESET&#62;      tags replace the
+&#60;BODY&#62; ... &#60;/BODY&#62;      tags within an HTML
+document. They define a frameset within which HTML documents
+appear. The FRAMESET tag can take on the attributes COLS or ROWS, each
+of which can specify the number and sizes of the frames to be
+included. Sizes can be specified as pixel values or as percentages. A
+wildcard (*) can be used at most once in either attribute to denote
+that the frame will take up whatever space remains on the screen.
+
+The &#60;FRAME&#62; tag specifies the name and source file of a
+particular frame. The SRC attribute defines the HTML file that will
+appear within that frame. The NAME attribute declares a name for the
+frame. This name can later be used as the target of a hyperlink,
+making the document specified by the hyperlink appear in that
+frame. Finally, the FRAME tag can accept the SCROLLING attribute with
+the values YES, NO, or AUTO and the NORESIZE attribute with the values
+YES or NO.
+
+Frames require the hypertext reference anchor tag to be used somewhat
+differently. When declaring an &#60;A HREF&#62; tag, apart from
+specifying the URL reference, it is necessary to also provide a TARGET
+attribute with a value referring to the name of the frame being
+targeted. For instance, in a FRAMESET that includes frames named
+navigation and body, an HTML document called target.html would be
+displayed in the body  frame by clicking on a hyperlink defined as
+follows:
+
+<PRE>&#60;A HREF="target.html" TARGET="body"&#62;Why don't you click
+here?&#60;/A&#62;</PRE>
+
+<P>Text included between a pair of &#60;NOFRAMES&#62;
+... &#60;/NOFRAMES&#62;      tags ensures that all users will receive
+some form of HTML content. The text between a pair of <NOFRAMES>
+... </NOFRAMES> tags will be ignored by frames-enabled browsers, but
+it will be displayed by all other browsers. Netscape Navigator and
+Internet Explorer are both frames-enabled.</P>
+
+<P>For instance, check out the following HTML code, which creates a
+column that is 20% as wide as the browser window on the left side, a
+200-pixel wide column on the right side, and allocates the remaining
+space to the middle column. The leftmost column is then sliced into
+two rows, the top row being 250 pixels high and the bottom row
+inheriting whatever space is left of the column. If this vivid
+description has not satisfied you, <A HREF="frames.html">see for
+yourself.</A></P>
+
+<PRE>
+&#60;FRAMESET COLS="20%,*,200"&#62;
+	&#60;FRAMESET ROWS="250,*"&#62;
+		&#60;FRAME SRC="a.html" NAME="A"&#62;
+		&#60;FRAME SRC="b.html" NAME="B"&#62;
+	&#60;/FRAMESET&#62;
+	&#60;FRAME SRC="c.html" NAME="C"&#62;
+	&#60;FRAME SRC="d.html" NAME="D"&#62;
+&#60;/FRAMESET&#62;
+</PRE>
+
+<P><HR></P>
+
+<P><H3><A NAME="external">External Resources</A></H3></P>
+
+<P>Thus ends our excursion into
+the world of HyperText Markup Language. The above tags, along with a
+healthy dose of creativity, will allow you to author all sorts of
+beautiful web projects. However, for the benefit of
+those who wish to learn more, we provide a list of our favorite
+HTML reference sites below:
+
+
+<UL>
+<LI>The World Wide Web Consortium at <A
+HREF="http://www.w3c.org">http://www.w3c.org</A></LI>
+
+<LI>Netscape Corporation's DevEdge Online at <A
+HREF="http://developer.netscape.com/library/documentation/htmlguid/">http://developer.netscape.com/library/documentation/htmlguid/</A></LI>
+<LI>Microsoft Corporation's Site Builder Workshop at <A
+HREF="http://www.microsoft.com/workshop/default.asp">http://www.microsoft.com/workshop/default.asp</A></LI>
+<LI>The HTML Writers' Guild at <A
+HREF="http://www.hwg.org">http://www.hwg.org</A></LI>
+<LI>WebMonkey at <A
+HREF="http://www.webmonkey.com">http://www.webmonkey.com</A></LI>
+
+
+</UL>
+<P><HR></P>
+<I>This tutorial was written for use in <A
+HREF="http://www.cs.brown.edu/courses/cs002/">CS2</A> at Brown
+University, Spring 1998, by Izel Sulam and Lisa Cozzens.<BR>
+It was slightly modified for use in <A
+HREF="http://www.cs.brown.edu/courses/bridge/">A Bridge to Computer
+Science</A>, Summer 1998, by Lisa Cozzens</I></CENTER>
+
+</BODY>
+</HTML>

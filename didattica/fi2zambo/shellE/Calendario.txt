@@ -1,0 +1,23 @@
+# si danno 1 o 2 argomenti conn formato libero
+# per specificare il mese
+
+#ese4 [mese [anno]]
+
+case $# in
+0) set `date`;m=$2;y=$6;;
+#col comando set si pongono gli argomenti $1 $2 .. con l'out di date
+1) m=$1; set `date`; y=$6;;
+*) m=$1; y=$2;;
+esac
+
+# nota che $0 rimane uguale anche dopo il set
+
+case $m in
+  jan*|gen*)	m=1;;
+  feb*     )	m=1;;
+#eccetera eccetera
+esac
+
+
+cal $m $y
+

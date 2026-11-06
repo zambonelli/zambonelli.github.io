@@ -1,0 +1,18 @@
+# si fa il monitor degli utenti in istanti 
+# successivi e si vede se ci sono delle differenze
+
+new=/usr/tmp/who1$$
+old=/usr/tmp/who2$$
+
+
+>$old
+
+while :   #ciclo infinito
+do
+  who > $new
+  diff $old $new
+  echo move
+  mv $new $old
+  sleep 60
+done
+

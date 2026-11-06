@@ -1,0 +1,15 @@
+ESAME DI FONDAMENTI DI INFORMATICA C - CdL Ing. El. & Inf. A-C - 18 Aprile 2001
+
+Si realizzi un programma per la gestione di dati relativi a uno specifico esame universitario. In particolare, si dovranno gestire e aggiornare i dati relativi agli studenti (Cognome, Numero Matricola, Data Esame, Voto Esame).
+
+Si organizzino i dati sfruttando le strutture dati ritenute più opportune a facilitare la gestione e la ricerca di dati.
+
+Il programma deve presentare all'utente le seguenti scelte:
+· inserimento di dati relativi a un nuovo studente (punti 5);
+· visualizzazione ordinata secondo ordine alfabetico dei dati di tutti gli studenti (punti 5);
+· visualizzazione ordinata secondo il voto preso all'esame (punti 6);
+· visualizzazione ordinata secondo la data d'esame (punti 8);
+· aggiornamento voto di uno studente (punti 6); NOTA: si possono aggiornare solo i voti minori di 18.
+
+Si strutturi il programma suddividendolo nei modi ritenuti più soddisfacenti e si sfruttino a piacere le librerie di cui si ha la disponibilità.
+

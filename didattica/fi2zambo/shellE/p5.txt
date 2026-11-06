@@ -1,0 +1,72 @@
+/*
+ * genera N processi figli
+ * poi attende che tutti i figli siano terminati
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+main(int argc, char *argv[])
+{
+  int i, N;
+  int pid, status;
+  int fd, len, sum;
+  char buffer[100];
+  
+  if (argc < 3)
+  {
+    printf("USO: %s N file\ngenera N processi figli che scrivono su <file>\n\n", argv[0]);
+    exit(0);
+  }
+  
+  fd = creat(argv[2], 0644);
+  if (fd < 0)
+  {
+    printf("Errore nella creazione del file %s\n", argv[2]);
+    exit(1);
+  }
+  
+  N = atoi(argv[1]);
+  printf("padre %d genera %d figli\n", getpid(), N);
+  
+  for (i=0; i < N; i++)
+  {
+    if ((pid = fork()) < 0)
+    {
+      printf("Errore nella fork\n\n");
+      exit(1);
+    }
+    if (pid == 0) /* il figlio */
+    {
+      printf("figlio %d del padre %d\n", getpid(), getppid());
+      break;  /* esce dal ciclo */
+    }
+  }
+  
+  
+  if (pid != 0) /* padre */
+  {
+    printf("generati %d figli\n", N);
+    sum = 0;
+    for (i=0; i<N; i++)
+    {
+      pid = wait(&status); /* attende un figlio alla volta */
+      printf("il figlio %d ha terminato con stato %d\n", pid, (status>>8));
+      sum = sum + (status>>8);
+    }
+    printf("Byte totali scritti: %d\n", sum);
+    sum = lseek(fd, 0, SEEK_END); /* va alla fine del file */
+    printf("Il file contiene %d byte\n", sum);
+    
+  }
+  else /* figli */
+  { 
+    srand(getpid());
+    len = rand() / 640;
+    printf("figlio %d scrivo %d caratteri\n", getpid(), len);
+    write(fd, buffer, len);
+    close(fd);
+    exit(len);
+  }
+}

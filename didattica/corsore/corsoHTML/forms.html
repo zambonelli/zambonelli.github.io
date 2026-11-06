@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (Win95; I) [Netscape]">
+   <TITLE>forms</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#912CEE" ALINK="#FF0000" BACKGROUND="sandston.jpg">
+
+<CENTER><IMG SRC="bridgeT.gif" HEIGHT=67 WIDTH=500></CENTER>
+
+<CENTER>
+<H1>
+Forms Example</H1></CENTER>
+<!-- Note: If you're looking at this through the View Source command, IGNORE this FORM tag.
+     Since this is just an example of a form, it doesn't have a METHOD or an ACTION. Instead,
+     when you submit the form, a JavaScript notice pops up to let you know that if this were
+     an actual form, it would have been submitted. --><FORM onSubmit="alert('If this were an actual form, it would have been submitted')">
+<HR>
+
+<P>Visitors to your page can type text into text boxes:
+<BR><TT>&lt;INPUT TYPE=text NAME=MyTextBox SIZE=20></TT>
+
+<P><I>What is your name?</I>&nbsp;<INPUT TYPE=text NAME=MyTextBox SIZE=20>
+
+<P>We can use the VALUE attribute to give the text box a default reply:
+<BR><TT>&lt;INPUT TYPE=text NAME=TextBoxWithDefault VALUE="Hello!" SIZE=20></TT>
+
+<P><I>What would you like to say?</I>&nbsp;<INPUT TYPE=text NAME=TextBoxWithDefault SIZE=20 VALUE="Hello!">
+
+<P>TEXTAREAs can be used if you want some more space to put text. Any text
+between the &lt;TEXTAREA> and the &lt;/TEXTAREA> will be displayed as the
+default text:
+<BR><TT>&lt;TEXTAREA NAME=BigBox ROWS=5 COLS=30>Lots of room to type!&lt;/TEXTAREA></TT>
+
+<P><I>What do you like about &lt;TEXTAREA>'s?</I>
+<BR><TEXTAREA NAME=BigBox ROWS=5 COLS=30>Lots of room to type!</TEXTAREA>
+
+<P>
+<HR>
+
+<P>Checkboxes allow visitors to select one or more options:
+<PRE>&lt;INPUT TYPE=checkbox NAME=PossibleMajors VALUE="CS">
+&lt;INPUT TYPE=checkbox NAME=PossibleMajors VALUE="Egyptology">
+&lt;INPUT TYPE=checkbox NAME=PossibleMajors VALUE="Other"></PRE>
+<I>Select any majors you're thinking about:</I>
+<BR><INPUT TYPE=checkbox NAME=PossibleMajors VALUE="CS">Computer Science&nbsp;<INPUT TYPE=checkbox NAME=PossibleMajors VALUE="Egyptology">Egyptology&nbsp;<INPUT TYPE=checkbox Name=PossibleMajors VALUE="Other">Some
+other, not-as-cool major
+
+<P>
+<HR>
+
+<P>Radio buttons let users select one option:
+<PRE>&lt;INPUT TYPE=radio NAME=Year VALUE="01">
+&lt;INPUT TYPE=radio NAME=Year VALUE="02">
+&lt;INPUT TYPE=radio NAME=Year VALUE="00">
+&lt;INPUT TYPE=radio NAME=Year VALUE="Other"></PRE>
+<I>What year are you?</I>
+<BR><INPUT TYPE=radio NAME=Year VALUE="01">I'm part of the #1 class of
+'01!
+<BR><INPUT TYPE=radio NAME=Year VALUE="02">I'm part of the pretty cool
+class of '02!
+<BR><INPUT TYPE=radio NAME=Year VALUE="00">I'm class of '00. I'm a zero.
+<BR><INPUT TYPE=radio NAME=Year VALUE="Other">I'm something else.
+
+<P>
+<HR>
+
+<P>&lt;SELECT>...&lt;SELECT> creates a pulldown menu of options. It takes
+up less screen space than radio buttons, so it's useful if you have lots
+of options for your visitor to choose form:
+<PRE>&lt;SELECT NAME=FavoriteBuilding>
+&lt;OPTION VALUE="CIT">The CIT, of course!&lt;/OPTION>
+&lt;OPTION VALUE="UHall">University Hall&lt;/OPTION>
+&lt;OPTION VALUE="Rock">The Rock&lt;/OPTION>
+&lt;OPTION VALUE="InfantLab">The Infant Lab. What goes on in there anyway?&lt;/OPTION>
+&lt;/SELECT></PRE>
+<I>What is your favorite building on campus?</I>
+<BR><SELECT NAME=TypeOfFood><OPTION VALUE="CIT">The CIT, of course!</OPTION>&nbsp;<OPTION VALUE="UHall">University
+Hall</OPTION>&nbsp;<OPTION VALUE="Rock">The Rock</OPTION>&nbsp;<OPTION VALUE="InfantLab">The
+Infant Lab. What goes on in there anyway?</OPTION>&nbsp;</SELECT>
+
+<P>
+<HR>
+
+<P>Submit buttons submit the visitor's answers to the URL specified as
+the ACTION of the form, while reset buttons reset the entire form to the
+default answers:
+<PRE>&lt;INPUT TYPE=submit NAME=SubmitButton VALUE="Submit my answers!">
+&lt;INPUT TYPE=reset NAME=ResetButton VALUE="Reset this form!"></PRE>
+<INPUT TYPE=submit NAME=SubmitButton VALUE="Submit my answers!">
+<BR><INPUT TYPE=reset NAME=ResetButton VALUE="Reset this form!">
+
+<P>Don't forget to end the form at the end with a &lt;/FORM> tag!
+<BR></FORM>
+
+<P>
+<HR>
+
+<P><I><A HREF="html.html#forms">Return to the HTML tutorial</A></I>
+</BODY>
+</HTML>
